@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.util.Vector2f;
 
-public class pigBehavior extends AnimalBehavior
+public class PigBehavior extends AnimalBehavior
 {
 	private int iHeight=320;
     private int iWidth=320;
     
-	public pigBehavior(BufferedImage[] spriteArray)
+	public PigBehavior(BufferedImage[] spriteArray)
 	{
 		super(spriteArray);
 	}

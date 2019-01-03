@@ -15,7 +15,7 @@ public class Enemy extends Entity {
     private boolean draw = false;
     
     private boolean blnPig = false;
-    private pigBehavior pigBehavior = new pigBehavior(sprite.getSpriteArray(DOWN));
+    private PigBehavior pigBehavior = new PigBehavior(sprite.getSpriteArray(DOWN));
     
     //private final String name;
 
