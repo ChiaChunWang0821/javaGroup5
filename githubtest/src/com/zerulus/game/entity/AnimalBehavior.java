@@ -37,6 +37,8 @@ public class AnimalBehavior
 		g.drawImage(imgInform, (int) 960, (int) 400, iWidth, iHeight, null);
 		g.drawImage(animal[0], (int)990, (int)410, 128, 128, null);
 		Sprite.drawArray(g, "Cow", new Vector2f(990+128, 454), 32, 24);
+		
+		
 	}
 	
 }
