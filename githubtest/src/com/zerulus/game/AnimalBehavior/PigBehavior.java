@@ -20,6 +20,11 @@ public class PigBehavior extends AnimalBehavior
 	public PigBehavior(BufferedImage[] spriteArray)
 	{
 		super(spriteArray);
+		
+		imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
+		
+		btnFeed = new Button("FEED", 32, 24, imgButton, 200, 75, new Vector2f(0, -50), true);
+		btnCollect = new Button("COLLECT", 32, 24, imgButton, 200, 75, new Vector2f(0, 50), true);
 	}
 
 	@Override
@@ -31,9 +36,8 @@ public class PigBehavior extends AnimalBehavior
 		
 		imgInform= GameStateManager.inform.getSprite(0,0,520,677);
 		
-		imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
-		btnFeed = new Button("FEED", 32, 24, imgButton, 200, 75, new Vector2f(0, -50), true);
-		btnCollect = new Button("COLLECT", 32, 24, imgButton, 200, 75, new Vector2f(0, 50), true);
+		btnFeed.render(g);
+		btnCollect.render(g);
 	}
 	
 }
