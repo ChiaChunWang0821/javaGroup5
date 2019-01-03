@@ -20,7 +20,6 @@ public class TileMapObj extends TileMap {
 
     public TileMapObj(String data, Sprite sprite[], int width, int height, int tileWidth, int tileHeight, int tileColumns[]) {
         Block tempBlock;
-        //tempBlock = null;
         event_blocks = new Block[width * height];
 
         this.tileWidth = tileWidth;
@@ -38,31 +37,12 @@ public class TileMapObj extends TileMap {
                 if(temp < 1729 && temp > 0) {
                     tempBlock = new ObjBlock(sprite[0].getSprite((int) ((temp - 1) % tileColumns[0]), (int) ((temp - 1) / tileColumns[0])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                 }
-                else if(temp >= 1729 && temp < 2753) {
+                else  {
                     temp = temp -1728;
                     tempBlock = new ObjBlock(sprite[1].getSprite((int) ((temp - 1) % tileColumns[1]), (int) ((temp - 1) / tileColumns[1])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                 }
-                else {
-                    temp = temp - 2752;
-                    tempBlock = new ObjBlock(sprite[2].getSprite((int) ((temp - 1) % tileColumns[2]), (int) ((temp - 1) / tileColumns[2])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                }
                 event_blocks[i] = tempBlock;
             }
-
-
-
-             /*if(temp != 0) {
-                 if(temp > 2000) {
-                     for(int j=0;j<sprite.length;j++)
-                         tempBlock = new HoleBlock(sprite[j].getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-
-                 } else {
-
-                     for(int j=0;j<sprite.length;j++)
-                        tempBlock = new ObjBlock(sprite[j].getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns) ),new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                 }
-                 event_blocks[i] = tempBlock;
-             }*/
         }
     }
 
