@@ -44,8 +44,9 @@ public class Button {
 
         if(centered) {
             iPos = new Vector2f((GamePanel.width / 2 - iWidth / 2 + offset.x) , (GamePanel.height / 2 - iHeight / 2 + offset.y));
-            lbPos = new Vector2f((GamePanel.width / 2 - ((label.length() - 1) * lbWidth) / 2), (GamePanel.height / 2 - (lbHeight + 5) / 2) + offset.y);
+            lbPos = new Vector2f((GamePanel.width / 2 - ((label.length() - 1) * lbWidth) / 2) + offset.x, (GamePanel.height / 2 - (lbHeight + 5) / 2) + offset.y);
         }
+        
         this.bounds = new AABB(iPos, iWidth, iHeight);
         events = new ArrayList<ClickEvent>();
     }

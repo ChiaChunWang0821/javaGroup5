@@ -10,7 +10,7 @@ import com.zerulus.game.util.Vector2f;
 
 public class PigBehavior extends AnimalBehavior
 {
-	private int iHeight=280;
+	private int iHeight=320;
     private int iWidth=320;
     
     private BufferedImage imgButton;
@@ -23,18 +23,19 @@ public class PigBehavior extends AnimalBehavior
 		
 		imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
 		
-		btnFeed = new Button("FEED", 32, 24, imgButton, 200, 75, new Vector2f(300, 150), true);
-		btnCollect = new Button("COLLECT", 32, 24, imgButton, 200, 75, new Vector2f(300, 250), true);
+		btnFeed = new Button("FEED", 32, 24, imgButton, 200, 75, new Vector2f(480, 130), true);
+		btnCollect = new Button("COLLECT", 32, 24, imgButton, 200, 75, new Vector2f(480, 220), true);
+		// 480 130 480 220
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
-		g.drawImage(imgInform, (int) 900, (int) 410, iWidth, iHeight, null);
-		g.drawImage(animal[0], (int)930, (int)410, 128, 128, null);
-		Sprite.drawArray(g, "Pig", new Vector2f(990+128, 454), 32, 24);
-		
 		imgInform= GameStateManager.inform.getSprite(0,0,520,677);
+		
+		g.drawImage(imgInform, (int) 960, (int) 340, iWidth, iHeight, null);
+		g.drawImage(animal[0], (int)990, (int)340, 128, 128, null);
+		Sprite.drawArray(g, "Pig", new Vector2f(990+128, 384), 32, 24);
 		
 		btnFeed.render(g);
 		btnCollect.render(g);
