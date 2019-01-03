@@ -13,6 +13,7 @@ public class PauseState extends GameState {
     private BufferedImage imgButton;
     private Button btnResume;
     private Button btnExit;
+    private Button btnYa;
 
     public PauseState(GameStateManager gsm) {
         super(gsm);
@@ -21,6 +22,7 @@ public class PauseState extends GameState {
 
         btnResume = new Button("RESUME", 32, 24, imgButton, 200, 75, new Vector2f(0, -50), true);
         btnExit = new Button("EXIT", 32, 24, imgButton, 200, 75, new Vector2f(0, 50), true);
+        btnYa = new Button("Ya", 32, 24, imgButton, 200, 75, new Vector2f(0, 150), true);
         
         btnResume.addEvent(e -> {
             gsm.pop(GameStateManager.PAUSE);
@@ -35,12 +37,14 @@ public class PauseState extends GameState {
     public void update(double time) {
         btnResume.update();
         btnExit.update();
+        btnYa.update();
     }
 
     @Override
     public void input(MouseHandler mouse, KeyHandler key) {
         btnResume.input(mouse, key);
         btnExit.input(mouse, key);
+        btnYa.input(mouse, key);
     }
 
     @Override
@@ -52,5 +56,6 @@ public class PauseState extends GameState {
     public void render(Graphics2D g) {
         btnResume.render(g);
         btnExit.render(g);
+        btnYa.render(g);
     }
 }

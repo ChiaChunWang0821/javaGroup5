@@ -6,12 +6,9 @@ import com.zerulus.game.entity.Player;
 import com.zerulus.game.graphics.Font;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.tiles.TileManager;
-import com.zerulus.game.util.KeyHandler;
-import com.zerulus.game.util.MouseHandler;
-import com.zerulus.game.util.Vector2f;
-import com.zerulus.game.util.Camera;
-import com.zerulus.game.util.AABB;
-import java.awt.Graphics2D;
+import com.zerulus.game.util.*;
+
+import java.awt.*;
 
 public class PlayState extends GameState {
 

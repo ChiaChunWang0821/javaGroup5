@@ -1,14 +1,13 @@
 package com.zerulus.game.tiles;
 
-import java.util.HashMap;
-import java.awt.Graphics2D;
-
 import com.zerulus.game.graphics.Sprite;
-import com.zerulus.game.util.AABB;
-import com.zerulus.game.util.Vector2f;
 import com.zerulus.game.tiles.blocks.Block;
 import com.zerulus.game.tiles.blocks.HoleBlock;
 import com.zerulus.game.tiles.blocks.ObjBlock;
+import com.zerulus.game.util.AABB;
+import com.zerulus.game.util.Vector2f;
+
+import java.awt.*;
 
 public class TileMapObj extends TileMap {
 
@@ -34,9 +33,9 @@ public class TileMapObj extends TileMap {
         for(int i = 0; i < (width * height); i++) {
             int temp = Integer.parseInt(block[i].replaceAll("\\s+",""));
              if(temp != 0) {
-                 if(temp == 172) {
+                 if(temp == 172) {   //黑洞
                      tempBlock = new HoleBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns) ),new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                 } else {
+                 } else {  //不能去
                      tempBlock = new ObjBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns) ),new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                  }
                  event_blocks[i] = tempBlock;

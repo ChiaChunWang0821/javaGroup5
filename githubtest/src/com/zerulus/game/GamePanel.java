@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private GameStateManager gsm;
 
-    public GamePanel(int width, int height) {
+    public GamePanel(int width, int height,JFrame window) {
         GamePanel.width = width;
         GamePanel.height = height;
         setPreferredSize(new Dimension(width, height));

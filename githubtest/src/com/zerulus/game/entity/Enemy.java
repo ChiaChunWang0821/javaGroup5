@@ -10,6 +10,8 @@ public class Enemy extends Entity {
     private AABB sense;
     private int r;
     private int heart=0;
+    private PersonInformation pInform = new PersonInformation(heart,sprite.getSpriteArray(DOWN));
+    private boolean draw=false;
     //private final String name;
 
 
@@ -120,25 +122,25 @@ public class Enemy extends Entity {
 
             g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
         }
+        if(draw==true){
+            pInform.render(g);
+        }
     }
 
     public boolean clickInside(int posx, int posy){
         if(posx > (int)pos.getWorldVar().x + (int)bounds.getXOffset() && posx < (int)pos.getWorldVar().x + (int)bounds.getXOffset() + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y + (int)bounds.getYOffset() && posy < (int)pos.getWorldVar().y + (int)bounds.getYOffset() + (int)bounds.getHeight()){
-            System.out.println("IN");
             return true;
         }
         return  false;
     }
 
     public void input(MouseHandler mouse, KeyHandler key) {
-
     }
 
-    public void  click(int x,int y){
+    public void  click(int x, int y){
         if(clickInside(x,y)){
-            setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
-            new PersonInformation(heart,sprite.getSpriteArray(DOWN));
+            if(draw==true){draw=false;setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);}
+            else{draw=true;setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);}
         }
     }
-
 }

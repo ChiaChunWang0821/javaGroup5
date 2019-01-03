@@ -24,6 +24,7 @@ public class GameStateManager {
 
     public static Font font;
     public static Sprite ui;
+    public static Sprite inform;
 
     public GameStateManager() {
         map = new Vector2f(GamePanel.width, GamePanel.height);
@@ -35,6 +36,8 @@ public class GameStateManager {
         Sprite.currentFont = font;
 
         ui = new Sprite("ui/ui.png", 64, 64);
+
+        inform = new Sprite("ui/inform.png",64,64);
 
         states[PLAY] = new PlayState(this);
     }
@@ -98,7 +101,7 @@ public class GameStateManager {
             }
         }
     }
-    public void click(int x,int y){
+    public void click(int x, int y){
         for (int i = 0; i < states.length; i++) {
             if (states[i] != null) {
                 states[i].click(x, y);
