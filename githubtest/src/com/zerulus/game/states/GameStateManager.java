@@ -107,5 +107,12 @@ public class GameStateManager {
             }
         }
     }
-
+    
+    public void click(int x, int y){
+        for (int i = 0; i < states.length; i++) {
+            if (states[i] != null) {
+                states[i].click(x, y);
+            }
+        }
+    }
 }
