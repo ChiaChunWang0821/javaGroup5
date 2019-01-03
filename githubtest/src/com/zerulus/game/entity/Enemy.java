@@ -2,6 +2,7 @@ package com.zerulus.game.entity;
 
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.util.*;
+import com.zerulus.game.AnimalBehavior.*;
 
 import java.awt.*;
 
@@ -11,7 +12,11 @@ public class Enemy extends Entity {
     private int r;
     private int heart=0;
     private PersonInformation pInform = new PersonInformation(heart,sprite.getSpriteArray(DOWN));
-    private boolean draw=false;
+    private boolean draw = false;
+    
+    private boolean blnPig = false;
+    private pigBehavior pigBehavior = new pigBehavior(sprite.getSpriteArray(DOWN));
+    
     //private final String name;
 
 
@@ -125,6 +130,9 @@ public class Enemy extends Entity {
         if(draw==true){
             pInform.render(g);
         }
+        if(blnPig == true) {
+        	pigBehavior.render(g);
+        }
     }
 
     public boolean clickInside(int posx, int posy){
@@ -139,8 +147,23 @@ public class Enemy extends Entity {
 
     public void  click(int x, int y){
         if(clickInside(x,y)){
-            if(draw==true){draw=false;setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);}
-            else{draw=true;setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);}
+            if(draw == true){
+            	draw=false;
+            	setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
+            }
+            else{
+            	draw=true;
+            	setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
+            }
+            
+            if(blnPig == true) {
+            	blnPig = false;
+            	setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
+            }
+            else {
+            	blnPig = true;
+            	setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
+            }
         }
     }
 }
