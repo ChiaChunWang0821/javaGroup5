@@ -41,11 +41,14 @@ public class TileManager {
         int tileWidth;
         int tileHeight;
         int tileCount;
-        int tileColumns;
+        int tileColumns[] = new int [3];
+        /*int tileColumns0;
+        int tileColumns1;
+        int tileColumns2;*/
         int layers = 0;
-        Sprite sprite;
+        Sprite[] sprite = new Sprite[3];
 
-        String[] data = new String[10];
+        String[] data = new String[11];
 
         try {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -54,6 +57,7 @@ public class TileManager {
             doc.getDocumentElement().normalize();
 
             NodeList list = doc.getElementsByTagName("tileset");
+
             Node node = list.item(0);
             Element eElement = (Element) node;
 
@@ -61,14 +65,34 @@ public class TileManager {
             tileWidth = Integer.parseInt(eElement.getAttribute("tilewidth"));
             tileHeight = Integer.parseInt(eElement.getAttribute("tileheight"));
             tileCount = Integer.parseInt(eElement.getAttribute("tilecount"));
-            tileColumns =  Integer.parseInt(eElement.getAttribute("columns"));
-            sprite = new Sprite("tile/" + imagePath + ".png", tileWidth, tileHeight);
+            tileColumns[0] =  Integer.parseInt(eElement.getAttribute("columns"));
+            sprite[0] = new Sprite("tile/" + imagePath + ".png", tileWidth, tileHeight);
+
+            node = list.item(1);
+            eElement = (Element) node;
+
+            imagePath = eElement.getAttribute("name");
+            tileWidth = Integer.parseInt(eElement.getAttribute("tilewidth"));
+            tileHeight = Integer.parseInt(eElement.getAttribute("tileheight"));
+            tileCount = Integer.parseInt(eElement.getAttribute("tilecount"));
+            tileColumns[1] =  Integer.parseInt(eElement.getAttribute("columns"));
+            sprite[1] = new Sprite("tile/" + imagePath + ".png", tileWidth, tileHeight);
+
+            node = list.item(2);
+            eElement = (Element) node;
+
+            imagePath = eElement.getAttribute("name");
+            tileWidth = Integer.parseInt(eElement.getAttribute("tilewidth"));
+            tileHeight = Integer.parseInt(eElement.getAttribute("tileheight"));
+            tileCount = Integer.parseInt(eElement.getAttribute("tilecount"));
+            tileColumns[2] =  Integer.parseInt(eElement.getAttribute("columns"));
+            sprite[2] = new Sprite("tile/" + imagePath + ".png", tileWidth, tileHeight);
 
             list = doc.getElementsByTagName("layer");
             layers = list.getLength();
-            //System.out.println(layers);
 
             for(int i = 0; i < layers; i++) {
+                System.out.println("·F·F");
                 node = list.item(i);
                 eElement = (Element) node;
                 if(i <= 0) {
@@ -77,18 +101,20 @@ public class TileManager {
                 }
 
                 data[i] = eElement.getElementsByTagName("data").item(0).getTextContent();
-                //System.out.println(data[i]);
 
-                if(i >= 1) {
+
+                if(i < 10 ) {
+                    System.out.println("ªüÅo«¢"+i);
                     tm.add(new TileMapNorm(data[i], sprite, width, height, blockWidth, blockHeight, tileColumns));
-                } else {
+                } else { //i==10 »ÙÃªª«
+                    System.out.println("·F·F"+layers);
                     tm.add(new TileMapObj(data[i], sprite, width, height, blockWidth, blockHeight, tileColumns));
                 }
-
                 cam.setLimit(width * blockWidth, height * blockHeight);
 
             }
         } catch(Exception e) {
+            System.out.println(e);
             System.out.println("ERROR - TILEMANAGER: can not read tilemap");
         }
     }

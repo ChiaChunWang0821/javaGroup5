@@ -2,7 +2,6 @@ package com.zerulus.game.tiles;
 
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.tiles.blocks.Block;
-import com.zerulus.game.tiles.blocks.HoleBlock;
 import com.zerulus.game.tiles.blocks.ObjBlock;
 import com.zerulus.game.util.AABB;
 import com.zerulus.game.util.Vector2f;
@@ -19,8 +18,9 @@ public class TileMapObj extends TileMap {
     public static int width;
     public static int height;
 
-    public TileMapObj(String data, Sprite sprite, int width, int height, int tileWidth, int tileHeight, int tileColumns) {
+    public TileMapObj(String data, Sprite sprite[], int width, int height, int tileWidth, int tileHeight, int tileColumns[]) {
         Block tempBlock;
+        //tempBlock = null;
         event_blocks = new Block[width * height];
 
         this.tileWidth = tileWidth;
@@ -31,15 +31,38 @@ public class TileMapObj extends TileMap {
 
         String[] block = data.split(",");
         for(int i = 0; i < (width * height); i++) {
-            int temp = Integer.parseInt(block[i].replaceAll("\\s+",""));
-             if(temp != 0) {
-                 if(temp == 172) {   //é»‘æ´ž
-                     tempBlock = new HoleBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns) ),new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                 } else {  //ä¸èƒ½åŽ»
-                     tempBlock = new ObjBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns) ),new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+            long temp = Long.parseLong(block[i].replaceAll("\\s+",""),10);
+            if(temp != 0)
+            {
+                System.out.println("«¢Åo" + temp);
+                if(temp < 1729 && temp > 0) {
+                    tempBlock = new ObjBlock(sprite[0].getSprite((int) ((temp - 1) % tileColumns[0]), (int) ((temp - 1) / tileColumns[0])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                }
+                else if(temp >= 1729 && temp < 2753) {
+                    temp = temp -1728;
+                    tempBlock = new ObjBlock(sprite[1].getSprite((int) ((temp - 1) % tileColumns[1]), (int) ((temp - 1) / tileColumns[1])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                }
+                else {
+                    temp = temp - 2752;
+                    tempBlock = new ObjBlock(sprite[2].getSprite((int) ((temp - 1) % tileColumns[2]), (int) ((temp - 1) / tileColumns[2])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                }
+                event_blocks[i] = tempBlock;
+            }
+
+
+
+             /*if(temp != 0) {
+                 if(temp > 2000) {
+                     for(int j=0;j<sprite.length;j++)
+                         tempBlock = new HoleBlock(sprite[j].getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+
+                 } else {
+
+                     for(int j=0;j<sprite.length;j++)
+                        tempBlock = new ObjBlock(sprite[j].getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns) ),new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                  }
                  event_blocks[i] = tempBlock;
-             }
+             }*/
         }
     }
 
