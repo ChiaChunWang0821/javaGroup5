@@ -23,15 +23,15 @@ public class PigBehavior extends AnimalBehavior
 		
 		imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
 		
-		btnFeed = new Button("FEED", 32, 24, imgButton, 200, 75, new Vector2f(0, -50), true);
-		btnCollect = new Button("COLLECT", 32, 24, imgButton, 200, 75, new Vector2f(0, 50), true);
+		btnFeed = new Button("FEED", 32, 24, imgButton, 200, 75, new Vector2f(300, 150), true);
+		btnCollect = new Button("COLLECT", 32, 24, imgButton, 200, 75, new Vector2f(300, 250), true);
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
-		g.drawImage(imgInform, (int) 960, (int) 400, iWidth, iHeight, null);
-		g.drawImage(animal[0], (int)990, (int)410, 128, 128, null);
+		g.drawImage(imgInform, (int) 900, (int) 410, iWidth, iHeight, null);
+		g.drawImage(animal[0], (int)930, (int)410, 128, 128, null);
 		Sprite.drawArray(g, "Pig", new Vector2f(990+128, 454), 32, 24);
 		
 		imgInform= GameStateManager.inform.getSprite(0,0,520,677);
