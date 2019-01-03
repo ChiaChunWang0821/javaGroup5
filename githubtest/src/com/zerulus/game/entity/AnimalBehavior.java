@@ -1,60 +1,27 @@
 package com.zerulus.game.entity;
 
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import com.zerulus.game.graphics.Sprite;
 
-public class AnimalBehavior extends JFrame
+public class AnimalBehavior
 {
-	private final JButton btn_feed;
-	private final JButton btn_collect;
+	BufferedImage img;
+	BufferedImage[] animal;
+	private int iHeight=320;
+    private int iWidth=320;
 	
-	public AnimalBehavior()
+	public AnimalBehavior(BufferedImage[] spriteArray)
 	{
-		super("Select action");
-		setLayout(new GridLayout(4, 1));
-		setLocation(20, 20);
-		setSize(400, 400);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setVisible(true);
-        btn_feed = new JButton("Feed");
-        btn_collect = new JButton("Collect");
-        
-        btn_feed.addActionListener(new ActionListener() {
-        	@Override
-        	public void actionPerformed(ActionEvent e) {
-        		// FEED!!
-        		action_feed();
-        	}
-        });
-        
-        btn_collect.addActionListener(new ActionListener() {
-        	@Override
-        	public void actionPerformed(ActionEvent e) {
-        		// COLLECT!!
-        		action_collect();
-        	}
-        });
-        
-        add(btn_feed);
-        add(btn_collect);
+		this.animal = spriteArray;
 	}
 	
-	public void action_feed()
+	public void render(Graphics2D g)
 	{
-		/*BufferedImage imgHeart;
-        String[] src = new String('entity/heart.png');
-        for(int i=0;i< heart;i++){
-            imgHeart = ImageIO.read(getClass().getClassLoader().getResourceAsStream('entity/heart.png'));
-
-        }*/
+		g.drawImage(img, (int)0, (int)0, iWidth, iHeight, null);
+		g.drawImage(animal[0], (int)30, (int)20, 128, 128, null);
+		//Sprite.drawArray(g, "Cow", new Vector2f(30+128, 64);
 	}
 	
-	public void action_collect()
-	{
-		
-	}
 }
