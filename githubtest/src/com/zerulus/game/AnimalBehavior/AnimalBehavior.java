@@ -28,4 +28,6 @@ public abstract class AnimalBehavior
 	
 	public abstract void render(Graphics2D g);
 	
+	// public abstract void feed();
+	// public abstract void collect();
 }

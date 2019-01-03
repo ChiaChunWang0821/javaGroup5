@@ -3,9 +3,14 @@ package com.zerulus.game.AnimalBehavior;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
+
+import com.zerulus.game.GamePanel;
+import com.zerulus.game.entity.Enemy;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.states.GameStateManager;
 import com.zerulus.game.ui.Button;
+import com.zerulus.game.util.Camera;
 import com.zerulus.game.util.Vector2f;
 
 public class PigBehavior extends AnimalBehavior
@@ -17,6 +22,12 @@ public class PigBehavior extends AnimalBehavior
     private Button btnFeed;
     private Button btnCollect;
     
+    private Enemy pig;
+    private Camera cam;
+    
+    // private BufferedImage img;
+    // private boolean checkFeed = false;
+    
 	public PigBehavior(BufferedImage[] spriteArray)
 	{
 		super(spriteArray);
@@ -25,7 +36,30 @@ public class PigBehavior extends AnimalBehavior
 		
 		btnFeed = new Button("FEED", 32, 24, imgButton, 200, 75, new Vector2f(480, 130), true);
 		btnCollect = new Button("COLLECT", 32, 24, imgButton, 200, 75, new Vector2f(480, 220), true);
-		// 480 130 480 220
+		
+		btnFeed.addEvent(e -> {
+			/*try {
+	            img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("entity/pig_eat.png"));
+	        }catch (Exception e1){
+	            System.out.println("ERROR: could not load file: " + "entity/pig_eat.png");
+	        }*/
+			
+			pig = new Enemy(cam, new Sprite("entity/pig_eat.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 800, (GamePanel.height / 2) + 200), 128);
+			
+			// checkFeed = true;
+			
+			// feed();
+		});
+		btnCollect.addEvent(e -> {
+			pig = new Enemy(cam, new Sprite("entity/pig_eat.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 800, (GamePanel.height / 2) + 200), 128);
+			/*try {
+	            img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("entity/pig_eat.png"));
+	        }catch (Exception e1){
+	            System.out.println("ERROR: could not load file: " + "entity/pig_eat.png");
+	        }*/
+			
+			// collect();
+		});
 	}
 
 	@Override
@@ -39,6 +73,32 @@ public class PigBehavior extends AnimalBehavior
 		
 		btnFeed.render(g);
 		btnCollect.render(g);
+		
+		
+		/*if(checkFeed) {
+			g.drawImage(img,(int)30,(int)160,32,32,null);
+			
+			checkFeed = false;
+		}*/
 	}
 	
+	/*@Override
+	public void feed()
+	{
+		try {
+            img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("entity/pig_eat.png"));
+        }catch (Exception e){
+            System.out.println("ERROR: could not load file: " + "entity/pig_eat.png");
+        }
+	}
+	
+	@Override
+	public void collect()
+	{
+		try {
+            img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("entity/pig_eat.png"));
+        }catch (Exception e){
+            System.out.println("ERROR: could not load file: " + "entity/pig_eat.png");
+        }
+	}*/
 }
