@@ -92,7 +92,7 @@ public class TileManager {
                 if(i < 10 ) {
 
                     tm.add(new TileMapNorm(data[i], sprite, width, height, blockWidth, blockHeight, tileColumns));
-                } else { //i==10 »ÙÃªª«
+                } else { //i==10
 
                     tm.add(new TileMapObj(data[i], sprite, width, height, blockWidth, blockHeight, tileColumns));
                 }

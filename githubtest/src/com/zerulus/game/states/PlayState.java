@@ -2,6 +2,7 @@ package com.zerulus.game.states;
 
 import com.zerulus.game.GamePanel;
 import com.zerulus.game.entity.Enemy;
+// import com.zerulus.game.entity.Enemy_man;
 import com.zerulus.game.entity.Player;
 import com.zerulus.game.graphics.Font;
 import com.zerulus.game.graphics.Sprite;
@@ -17,6 +18,10 @@ public class PlayState extends GameState {
 	private Enemy enemy;
 	private TileManager tm;
 	private Camera cam;
+	private Enemy animal;
+	// private Enemy_man man_1;
+	private Enemy llama;
+	private Enemy pig;
 
 	public static Vector2f map;
 
@@ -28,10 +33,13 @@ public class PlayState extends GameState {
 		
 		cam = new Camera(new AABB(new Vector2f(0, 0), GamePanel.width + 64, GamePanel.height + 64));
 
-		tm = new TileManager("tile/tilemap.xml", cam);
+		tm = new TileManager("tile/test.xml", cam);
 
 		enemy = new Enemy(cam, new Sprite("entity/littlegirl.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) - 32 + 150, 0 + (GamePanel.height / 2) - 32 + 150), 64);
-		player = new Player(cam, new Sprite("entity/linkFormatted.png"), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 64);
+		player = new Player(cam, new Sprite("entity//男1_2.png",48,48), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 64);
+		animal = new Enemy(cam, new Sprite("entity/cow_walk.png",128, 128), new Vector2f(0+(GamePanel.width / 2)+200 , (GamePanel.height / 2)+200), 256);
+		llama = new Enemy(cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 128);
+		pig = new Enemy(cam, new Sprite("entity/pig_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 800, (GamePanel.height / 2) + 200), 128);
 		cam.target(player);
 	}
 
@@ -40,6 +48,10 @@ public class PlayState extends GameState {
 		if(!gsm.getState(GameStateManager.PAUSE)) {
 			player.update(enemy, time);
 			enemy.update(player);
+			animal.update(player);
+			//man_1.update(player);
+			llama.update(player);
+			pig.update(player);
 			cam.update();
 		}
 		
@@ -79,6 +91,10 @@ public class PlayState extends GameState {
 		
 		player.render(g);
 		enemy.render(g);
+		animal.render(g);
+		//man_1.render(g);
+		llama.render(g);
+		pig.render(g);
 		cam.render(g);
 	}
 }
