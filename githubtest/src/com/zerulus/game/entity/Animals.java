@@ -16,13 +16,16 @@ public class Animals extends Entity {
 
     private Camera cam;
     
-    public static int feedCount;
+    private int feedCount;
+    private String name;
 
 
-    public Animals(Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount) {
+    public Animals(String name, Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount) {
         super(sprite, orgin, size);
-
+        
+        this.name = name;
         this.cam = cam;
+        this.feedCount = feedCount;
 
         acc = 1f;
         maxSpeed = 2f;
@@ -35,7 +38,7 @@ public class Animals extends Entity {
 
         sense = new AABB(new Vector2f(orgin.x + size / 2 - r / 2, orgin.y + size / 2 - r / 2), r);
         
-        this.feedCount = feedCount;
+        
     }
 
     public void move(Player player) {
@@ -126,7 +129,7 @@ public class Animals extends Entity {
         }
         
         if(draw == true) {
-        	animalsBehavior.render(g);
+        	animalsBehavior.render(g, name, feedCount);
         }
     }
 
@@ -144,6 +147,7 @@ public class Animals extends Entity {
         if(clickInside(x,y)){
         	if(draw == true){
         		draw = false;
+        		this.feedCount++;
         		setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
         	}
             else{

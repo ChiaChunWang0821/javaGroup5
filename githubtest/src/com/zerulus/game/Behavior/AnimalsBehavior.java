@@ -1,9 +1,7 @@
 package com.zerulus.game.Behavior;
 
-import com.zerulus.game.entity.Animals;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.states.GameStateManager;
-import com.zerulus.game.ui.Button;
 import com.zerulus.game.util.Vector2f;
 
 import java.awt.*;
@@ -15,41 +13,36 @@ public class AnimalsBehavior
     BufferedImage imgInform;
     BufferedImage[] animal;
 
-    private int iHeight=320;
+    private int iHeight=200;
     private int iWidth=320;
 
     private BufferedImage imgButton;
-    private Button btnFeed;
+    // private Button btnFeed;
     // private Button btnCollect;
+    
+    private String satisfaction;
 
     public AnimalsBehavior(BufferedImage[] spriteArray)
     {
         this.animal = spriteArray;
+        
+        satisfaction = new String();
 
         imgInform= GameStateManager.inform.getSprite(0,0,520,677);
-
-        imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
-        btnFeed = new Button("FEED", 32, 24, imgButton, 200, 75, new Vector2f(480, 210), true);
-        // btnCollect = new Button("COLLECT", 32, 24, imgButton, 200, 75, new Vector2f(480, 220), true);
-
-        btnFeed.addEvent(e -> {
-            Animals.feedCount++;
-        });
-        /*btnCollect.addEvent(e -> {
-
-        });*/
     }
-
-    public void render(Graphics2D g) {
-        g.drawImage(imgInform, 960, 340, iWidth, iHeight, null);
-        g.drawImage(animal[0], 990, 340, 128, 128, null);
-        Sprite.drawArray(g, "Pig", new Vector2f(990+128, 384), 32, 24);
-
-        btnFeed.render(g);
-        // btnCollect.render(g);
-
+    
+    public void render(Graphics2D g, String name, int feedCount) {
+        g.drawImage(imgInform, 960, 460, iWidth, iHeight, null);
+        g.drawImage(animal[0], 990, 460, 128, 128, null);
+        Sprite.drawArray(g, name, new Vector2f(990+128, 504), 32, 24);
+        
         Font myFont = new Font ("微軟正黑體", 1, 32);
         g.setFont (myFont);
-        g.drawString("飽食度:", 1000, 500);
+        
+        satisfaction = (feedCount*20 + "%");
+        if(feedCount > 5) {
+        	satisfaction = ("100%");
+        }
+        g.drawString("飽食度: " + satisfaction, 1000, 600);
     }
 }

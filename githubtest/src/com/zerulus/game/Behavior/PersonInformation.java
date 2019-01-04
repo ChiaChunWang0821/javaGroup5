@@ -1,4 +1,4 @@
-package com.zerulus.game.entity;
+package com.zerulus.game.Behavior;
 
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.states.GameStateManager;

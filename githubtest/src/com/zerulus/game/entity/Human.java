@@ -1,5 +1,6 @@
 package com.zerulus.game.entity;
 
+import com.zerulus.game.Behavior.PersonInformation;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.util.*;
 
