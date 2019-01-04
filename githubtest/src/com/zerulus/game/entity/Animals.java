@@ -15,11 +15,12 @@ public class Animals extends Entity {
     private AnimalsBehavior animalsBehavior = new AnimalsBehavior(sprite.getSpriteArray(DOWN));
 
     private Camera cam;
+    
+    public static int feedCount;
 
 
-    public Animals(Camera cam, Sprite sprite, Vector2f orgin, int size) {
+    public Animals(Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount) {
         super(sprite, orgin, size);
-        //this.name = name;
 
         this.cam = cam;
 
@@ -33,6 +34,8 @@ public class Animals extends Entity {
         bounds.setYOffset(size/4);
 
         sense = new AABB(new Vector2f(orgin.x + size / 2 - r / 2, orgin.y + size / 2 - r / 2), r);
+        
+        this.feedCount = feedCount;
     }
 
     public void move(Player player) {
