@@ -2,6 +2,7 @@ package com.zerulus.game.entity;
 
 import com.zerulus.game.Behavior.*;
 import com.zerulus.game.graphics.Sprite;
+import com.zerulus.game.items.Item;
 import com.zerulus.game.util.*;
 
 import java.awt.*;
@@ -14,16 +15,16 @@ public class Animals extends Entity {
     private boolean draw = false;
     private AnimalsBehavior animalsBehavior = new AnimalsBehavior(sprite.getSpriteArray(DOWN));
 
-    private Camera cam;
-    
-    private int feedCount;
     private String name;
+    private Item item;
+    private Camera cam;
+    private int feedCount;
 
-
-    public Animals(String name, Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount) {
+    public Animals(String name, Item item, Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount) {
         super(sprite, orgin, size);
         
         this.name = name;
+        this.item = item;
         this.cam = cam;
         this.feedCount = feedCount;
 
@@ -130,6 +131,10 @@ public class Animals extends Entity {
         
         if(draw == true) {
         	animalsBehavior.render(g, name, feedCount);
+        }
+        if(feedCount > 5) {
+        	// add item
+        	feedCount = 0;
         }
     }
 

@@ -15,10 +15,6 @@ public class AnimalsBehavior
 
     private int iHeight=200;
     private int iWidth=320;
-
-    private BufferedImage imgButton;
-    // private Button btnFeed;
-    // private Button btnCollect;
     
     private String satisfaction;
 
@@ -40,9 +36,7 @@ public class AnimalsBehavior
         g.setFont (myFont);
         
         satisfaction = (feedCount*20 + "%");
-        if(feedCount > 5) {
-        	satisfaction = ("100%");
-        }
+        
         g.drawString("飽食度: " + satisfaction, 1000, 600);
     }
 }
