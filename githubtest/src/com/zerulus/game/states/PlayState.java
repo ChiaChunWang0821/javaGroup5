@@ -78,7 +78,10 @@ public class PlayState extends GameState {
 	public void click(int x, int y) {
 		if(!gsm.getState(GameStateManager.PAUSE)) {
 			enemy.click(x,y);
+			man2.click(x, y);
 			pig.click(x, y);
+			llama.click(x, y);
+			animal.click(x, y);
 		}
 	}
 

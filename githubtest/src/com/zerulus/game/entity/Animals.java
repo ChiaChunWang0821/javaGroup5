@@ -1,6 +1,6 @@
 package com.zerulus.game.entity;
 
-import com.zerulus.game.Behavior.PigBehavior;
+import com.zerulus.game.Behavior.*;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.util.*;
 
@@ -10,9 +10,9 @@ public class Animals extends Entity {
 
     private AABB sense;
     private int r;
-
-    private boolean blnPig = false;
-    private PigBehavior pigBehavior = new PigBehavior(sprite.getSpriteArray(DOWN));
+    
+    private boolean draw = false;
+    private AnimalsBehavior animalsBehavior = new AnimalsBehavior(sprite.getSpriteArray(DOWN));
 
     private Camera cam;
 
@@ -121,9 +121,9 @@ public class Animals extends Entity {
 
             g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
         }
-
-        if(blnPig == true) {
-            pigBehavior.render(g);
+        
+        if(draw == true) {
+        	animalsBehavior.render(g);
         }
     }
 
@@ -139,13 +139,13 @@ public class Animals extends Entity {
 
     public void  click(int x, int y){
         if(clickInside(x,y)){
-            if(blnPig == true) {
-                blnPig = false;
-                setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
-            }
-            else {
-                blnPig = true;
-                setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
+        	if(draw == true){
+        		draw = false;
+        		setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
+        	}
+            else{
+            	draw = true;
+            	setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
             }
         }
     }
