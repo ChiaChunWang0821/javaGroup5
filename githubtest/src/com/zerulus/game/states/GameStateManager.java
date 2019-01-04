@@ -19,27 +19,25 @@ public class GameStateManager {
     public static final int MENU = 1;
     public static final int PAUSE = 2;
     public static final int GAMEOVER = 3;
-    public static final int INVENTORY = 4;
 
     public int onTopState = 0;
 
     public static Font font;
     public static Sprite ui;
-    public static Sprite box;
     public static Sprite inform;
 
     public GameStateManager() {
         map = new Vector2f(GamePanel.width, GamePanel.height);
         Vector2f.setWorldVar(map.x, map.y);
 
-        states = new GameState[5];
+        states = new GameState[4];
 
         font = new Font("font/font.png", 10, 10);
         Sprite.currentFont = font;
 
         ui = new Sprite("ui/ui.png", 64, 64);
-        inform = new Sprite("ui/inform.png", 64, 64);
-        box = new Sprite("ui/transparent.png", 90, 90);
+
+        inform = new Sprite("ui/inform.png",64,64);
 
         states[PLAY] = new PlayState(this);
     }
@@ -64,13 +62,9 @@ public class GameStateManager {
         }
         if (state == PAUSE) {
             states[PAUSE] = new PauseState(this);
-            System.out.println(this);
         }
         if (state == GAMEOVER) {
             states[GAMEOVER] = new GameOverState(this);
-        }
-        if (state == INVENTORY) {
-            states[INVENTORY] = new BagState(this);
         }
     }
 
@@ -107,7 +101,6 @@ public class GameStateManager {
             }
         }
     }
-    
     public void click(int x, int y){
         for (int i = 0; i < states.length; i++) {
             if (states[i] != null) {
@@ -115,5 +108,5 @@ public class GameStateManager {
             }
         }
     }
-    
+
 }

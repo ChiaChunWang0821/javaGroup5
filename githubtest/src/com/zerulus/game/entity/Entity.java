@@ -11,13 +11,12 @@ import java.awt.image.BufferedImage;
 
 public abstract class Entity {
 
-    protected final int ASKING = 6;
     protected final int ATTACK = 5;
     protected final int FALLEN = 4;
     protected final int UP = 3;
-    protected final int DOWN = 2;
+    protected final int DOWN = 0;
     protected final int LEFT = 1;
-    protected final int RIGHT = 0;
+    protected final int RIGHT = 2;
 
     protected int currentAnimation;
 
@@ -25,6 +24,8 @@ public abstract class Entity {
     protected Sprite sprite;
     protected Vector2f pos;
     protected int size;
+    protected int size_w;
+    protected int size_h;
 
     protected boolean up;
     protected boolean down;
@@ -58,17 +59,32 @@ public abstract class Entity {
         this.sprite = sprite;
         pos = orgin;
         this.size = size;
-
+        this.size_w = size;
+        this.size_h = size;
         bounds = new AABB(orgin, size, size);
         hitBounds = new AABB(orgin, size, size);
-        hitBounds.setXOffset(size / 2);
+        hitBounds.setXOffset(size_w/ 2);
 
         ani = new Animation();
         setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);
 
         tc = new TileCollision(this);
     }
+    public Entity(Sprite sprite, Vector2f orgin, int size_h, int size_w) {
+        this.sprite = sprite;
+        pos = orgin;
+        this.size_w = size_w;
+        this.size_h = size_h;
 
+        bounds = new AABB(orgin, size_w, size_h);
+        hitBounds = new AABB(orgin, size_w, size_h);
+        hitBounds.setXOffset(size_w / 2);
+
+        ani = new Animation();
+        setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);
+
+        tc = new TileCollision(this);
+    }
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
@@ -164,16 +180,16 @@ public abstract class Entity {
 
     private void setHitBoxDirection() {
         if (up) {
-            hitBounds.setYOffset(-size / 2);
+            hitBounds.setYOffset(-size_h / 2);
             hitBounds.setXOffset(0);
         } else if (down) {
-            hitBounds.setYOffset(size / 2);
+            hitBounds.setYOffset(size_h / 2);
             hitBounds.setXOffset(0);
         } else if (left) {
-            hitBounds.setXOffset(-size / 2);
+            hitBounds.setXOffset(-size_w / 2);
             hitBounds.setYOffset(0);
         } else if (right) {
-            hitBounds.setXOffset(size / 2);
+            hitBounds.setXOffset(size_w / 2);
             hitBounds.setYOffset(0);
         }
     }

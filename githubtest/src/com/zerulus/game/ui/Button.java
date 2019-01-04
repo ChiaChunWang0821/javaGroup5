@@ -1,15 +1,15 @@
 package com.zerulus.game.ui;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
 import com.zerulus.game.GamePanel;
-import com.zerulus.game.util.Vector2f;
+import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.util.AABB;
 import com.zerulus.game.util.KeyHandler;
 import com.zerulus.game.util.MouseHandler;
-import com.zerulus.game.graphics.Sprite;
+import com.zerulus.game.util.Vector2f;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Button {
 
@@ -46,7 +46,10 @@ public class Button {
             iPos = new Vector2f((GamePanel.width / 2 - iWidth / 2 + offset.x) , (GamePanel.height / 2 - iHeight / 2 + offset.y));
             lbPos = new Vector2f((GamePanel.width / 2 - ((label.length() - 1) * lbWidth) / 2) + offset.x, (GamePanel.height / 2 - (lbHeight + 5) / 2) + offset.y);
         }
-        
+        else{
+            iPos = new Vector2f(iWidth / 2 + offset.x,iHeight / 2 + offset.y);
+            lbPos = new Vector2f(iPos.x+lbWidth/2, iPos.y+lbHeight/2);
+        }
         this.bounds = new AABB(iPos, iWidth, iHeight);
         events = new ArrayList<ClickEvent>();
     }

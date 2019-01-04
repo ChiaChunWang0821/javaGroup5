@@ -20,10 +20,10 @@ public class Player extends Entity {
         this.cam = cam;
         acc = 2f;
         maxSpeed = 4f;
-        bounds.setWidth(42);
-        bounds.setHeight(20);
-        bounds.setXOffset(12);
-        bounds.setYOffset(40);
+        bounds.setWidth(size/2);
+        bounds.setHeight(size);
+        bounds.setXOffset(size/4);
+        bounds.setYOffset(0);
     }
 
     private void move() {
@@ -95,7 +95,7 @@ public class Player extends Entity {
 
     }
 
-    public void update(Enemy enemy, double time) {
+    public void update(Human enemy, double time) {
         super.update();
 
         attacking = isAttacking(time);
@@ -141,8 +141,9 @@ public class Player extends Entity {
             g.setColor(Color.red);
             g.drawRect((int) (hitBounds.getPos().getWorldVar().x + hitBounds.getXOffset()), (int) (hitBounds.getPos().getWorldVar().y + hitBounds.getYOffset()), (int) hitBounds.getWidth(), (int) hitBounds.getHeight());
         }
-
-        g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
+        //System.out.println(size_w);
+        //System.out.println(size_h);
+        g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size_w, size_h, null);
     }
 
     public void input(MouseHandler mouse, KeyHandler key) {
