@@ -20,7 +20,7 @@ public class Animals extends Entity {
     private Player player;
     private int feedCount;
 
-    public Animals(String name, String item, Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount,Player player) {
+    public Animals(String name, String item, Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount, Player player) {
         super(sprite, orgin, size);
         
         this.name = name;

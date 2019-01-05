@@ -17,6 +17,8 @@ public class PlayState extends GameState {
 	private Camera cam;
 
 	private ArrayList<Farm> farm = new ArrayList<>(9);
+	private ArrayList<Sea> seas = new ArrayList<>(9);
+	// private Sea sea;
 
 	private ArrayList<Animals> animals = new ArrayList<>(3);
 	private ArrayList<Human> human  = new ArrayList<>(5);
@@ -44,12 +46,24 @@ public class PlayState extends GameState {
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,570)/*框框起始位置 世界座標*/,256 ,8));
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,570)/*框框起始位置 世界座標*/,256 ,9));
 
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 1900), 316, 1, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2058), 316, 2, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2216), 316, 3, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2374), 316, 4, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2532), 316, 5, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2690), 316, 6, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2848), 316, 7, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3006), 316, 8, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3164), 316, 9, player));
+		
+		// sea = new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3164), 316, 10);
+		
 		player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 128);
 		george = new ShopNPC(cam, new Sprite("entity/george.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 300, (GamePanel.height / 2) + 800), 64);
 
-		animals.add(new Animals("Cow", new String("milk"), cam, new Sprite("entity/cow_walk.png",128, 128), new Vector2f(0+(GamePanel.width / 2)+200 , (GamePanel.height / 2)+200), 256, 1,player));
-		animals.add(new Animals("Llama", new String("fig"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 128, 1,player));
-		animals.add(new Animals("Pig", new String("meat"), cam, new Sprite("entity/pig_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 800, (GamePanel.height / 2) + 200), 128, 1,player));
+		animals.add(new Animals("Cow", new String("milk"), cam, new Sprite("entity/cow_walk.png",128, 128), new Vector2f(0+(GamePanel.width / 2)+200 , (GamePanel.height / 2)+200), 256, 1, player));
+		animals.add(new Animals("Llama", new String("fig"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 128, 1, player));
+		animals.add(new Animals("Pig", new String("meat"), cam, new Sprite("entity/pig_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 800, (GamePanel.height / 2) + 200), 128, 1, player));
 
 		human.add(new Human(cam, new Sprite("entity/男1_2.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 1300), 128, "Gray",player));
 		human.add(new Human(cam, new Sprite("entity/男2_4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1500, (GamePanel.height / 2) + 1500), 128, "Tashi",player));
@@ -106,6 +120,10 @@ public class PlayState extends GameState {
 			for(int i = 0; i < 9; i++){
 				farm.get(i).click(x, y);
 			}
+			for(int i = 0; i < 9; i++) {
+				seas.get(i).click(x, y);
+			}
+			// sea.click(x, y);
 			for(int i=0;i<5;i++){
 				human.get(i).click(x,y);
 			}
@@ -128,6 +146,10 @@ public class PlayState extends GameState {
 		for(int i = 0; i < 9; i++){
 			farm.get(i).render(g);
 		}
+		for(int i = 0; i < 9; i++) {
+			seas.get(i).render(g);
+		}
+		// sea.render(g);
 		for(int i=0;i<5;i++){
 			human.get(i).render(g);
 		}
