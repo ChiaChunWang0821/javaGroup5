@@ -4,6 +4,7 @@ import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.states.GameStateManager;
 import com.zerulus.game.util.KeyHandler;
 import com.zerulus.game.util.MouseHandler;
+import com.zerulus.game.util.Vector2f;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -137,7 +138,8 @@ public class Bag {
             for(int b=0;b<3;b++){
                 if(i==inventory.getSize()){break;}
                  g.drawImage(bagItems.get(i), (int) 845+b*90, (int) 140+a*90, 64, 64, null);
-                 i++;
+                Sprite.drawArray(g, String.valueOf(inventory.getQuantity(bagArray[i])),new Vector2f(890+b*90,180+a*90),32,24);
+                i++;
             }
         }
     }
