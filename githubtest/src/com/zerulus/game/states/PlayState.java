@@ -1,9 +1,7 @@
 package com.zerulus.game.states;
 
 import com.zerulus.game.GamePanel;
-import com.zerulus.game.entity.Animals;
-import com.zerulus.game.entity.Human;
-import com.zerulus.game.entity.Player;
+import com.zerulus.game.entity.*;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.items.Inventory;
 import com.zerulus.game.items.Item;
@@ -14,6 +12,7 @@ import java.awt.*;
 
 public class PlayState extends GameState {
 
+	private Font font;
 	private Player player;
 	private Human enemy;
 	private TileManager tm;
@@ -22,8 +21,7 @@ public class PlayState extends GameState {
 	private Animals llama;
 	private Animals pig;
 	private Human man2;
-
-	private Inventory inventory;
+	private ShopNPC george;
 	private Item apple;
 
 	public static Vector2f map;
@@ -38,15 +36,14 @@ public class PlayState extends GameState {
 
 		tm = new TileManager("tile/test.xml", cam);
 
-		inventory = new Inventory(apple);
-
 		enemy = new Human(cam, new Sprite("entity/littlegirl.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) - 32 + 150, 0 + (GamePanel.height / 2) - 32 + 150), 128);
 		player = new Player(cam, new Sprite("entity//男1_2.png",48,48), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 128);
 		animal = new Animals("Cow", new Item("milk"), cam, new Sprite("entity/cow_walk.png",128, 128), new Vector2f(0+(GamePanel.width / 2)+200 , (GamePanel.height / 2)+200), 256, 1);
 		llama = new Animals("Llama", new Item("fur"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 128, 1);
 		pig = new Animals("Pig", new Item("pork"), cam, new Sprite("entity/pig_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 800, (GamePanel.height / 2) + 200), 128, 1);
 		man2 = new Human(cam, new Sprite("entity/男2_4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1000, (GamePanel.height / 2) + 1200), 128);cam.target(player);
-
+		george = new ShopNPC(cam, new Sprite("entity/george.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 300, (GamePanel.height / 2) + 800), 64);
+		
 		cam.target(player);
 	}
 
@@ -60,6 +57,7 @@ public class PlayState extends GameState {
 			llama.update(player);
 			pig.update(player);
 			man2.update(player);
+			george.update(player);
 			cam.update();
 		}
 
@@ -81,13 +79,6 @@ public class PlayState extends GameState {
 				gsm.add(GameStateManager.PAUSE);
 			}
 		}
-		if(key.i.clicked) {
-			if(gsm.getState(GameStateManager.INVENTORY)) {
-				gsm.pop(GameStateManager.INVENTORY);
-			} else {
-				gsm.add(GameStateManager.INVENTORY);
-			}
-		}
 	}
 
 	@Override
@@ -98,6 +89,7 @@ public class PlayState extends GameState {
 			pig.click(x, y);
 			llama.click(x, y);
 			animal.click(x, y);
+			george.click(x,y);
 		}
 	}
 
@@ -116,6 +108,7 @@ public class PlayState extends GameState {
 		llama.render(g);
 		pig.render(g);
 		man2.render(g);
+		george.render(g);
 		cam.render(g);
 	}
 }

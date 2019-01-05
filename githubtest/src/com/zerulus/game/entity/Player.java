@@ -3,6 +3,9 @@ package com.zerulus.game.entity;
 
 import com.zerulus.game.GamePanel;
 import com.zerulus.game.graphics.Sprite;
+import com.zerulus.game.items.Bag;
+import com.zerulus.game.items.Inventory;
+import com.zerulus.game.items.Item;
 import com.zerulus.game.util.KeyHandler;
 import com.zerulus.game.util.MouseHandler;
 import com.zerulus.game.util.Vector2f;
@@ -14,6 +17,13 @@ import java.awt.*;
 public class Player extends Entity {
 
     private Camera cam;
+    
+    private Bag bag;
+    private boolean drawBag=false ;
+    private Inventory inventory;
+    private Item beet = new Item("beet");
+    private Item cabbage = new Item("cabbage");
+    private Item carrot = new Item("carrot");
 
     public Player(Camera cam, Sprite sprite, Vector2f orgin, int size) {
         super(sprite, orgin, size);
@@ -24,6 +34,8 @@ public class Player extends Entity {
         bounds.setHeight(size);
         bounds.setXOffset(size/4);
         bounds.setYOffset(0);
+        
+        inventory = new Inventory(beet,cabbage, carrot, carrot);
     }
 
     private void move() {
@@ -131,6 +143,26 @@ public class Player extends Entity {
             }
         }
     }
+    
+    public Inventory getInventory()
+    {
+        return this.inventory;
+    }
+    
+    public void setInventory(Inventory inventory)
+    {
+        this.inventory = inventory;
+    }
+    
+    public void addItem(Item item)
+    {
+        inventory.add(item);
+    }
+    
+    public void removeItem(Item item)
+    {
+        inventory.remove(item);
+    }
 
     @Override
     public void render(Graphics2D g) {
@@ -144,6 +176,16 @@ public class Player extends Entity {
         //System.out.println(size_w);
         //System.out.println(size_h);
         g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size_w, size_h, null);
+        
+        if(drawBag){
+            bag.render(g);
+        }
+        
+        /*g.setColor(Color.green);
+        g.drawRect((int) (pos.getWorldVar().x + bounds.getXOffset()), (int) (pos.getWorldVar().y + bounds.getYOffset()), (int) bounds.getWidth(), (int) bounds.getHeight());
+        if(pos.getWorldVar().x < 0) {
+        	
+        }*/
     }
 
     public void input(MouseHandler mouse, KeyHandler key) {
@@ -168,6 +210,17 @@ public class Player extends Entity {
                 right = true;
             } else {
                 right = false;
+            }
+            
+            if(key.i.clicked)
+            {
+                bag = new Bag(inventory);
+                if(drawBag == false)
+                {
+                    drawBag = true;
+                } else {
+                    drawBag = false;
+                }
             }
 
             if(key.attack.down && canAttack) {

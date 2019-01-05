@@ -19,7 +19,6 @@ public class GameStateManager {
     public static final int MENU = 1;
     public static final int PAUSE = 2;
     public static final int GAMEOVER = 3;
-    public static final int INVENTORY = 4;
 
     public int onTopState = 0;
 
@@ -74,10 +73,6 @@ public class GameStateManager {
         }
         if (state == GAMEOVER) {
             states[GAMEOVER] = new GameOverState(this);
-        }
-        if (state == INVENTORY) {
-            states[INVENTORY] = new BagState(this);
-            System.out.println("Baggsm");
         }
     }
 

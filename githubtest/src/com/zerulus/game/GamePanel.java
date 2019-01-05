@@ -40,7 +40,6 @@ public class GamePanel extends JPanel implements Runnable {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("YA");
                 gsm.click(e.getX(),e.getY());
             }
 

@@ -132,6 +132,10 @@ public abstract class Entity {
     public int getSize() {
         return size;
     }
+    
+    /*public Vector2f getPosition() {
+    	return pos;
+    }*/
 
     public Animation getAnimation() {
         return ani;
