@@ -173,17 +173,19 @@ public class Player extends Entity {
             g.setColor(Color.red);
             g.drawRect((int) (hitBounds.getPos().getWorldVar().x + hitBounds.getXOffset()), (int) (hitBounds.getPos().getWorldVar().y + hitBounds.getYOffset()), (int) hitBounds.getWidth(), (int) hitBounds.getHeight());
         }
-        //System.out.println(size_w);
-        //System.out.println(size_h);
+        
         g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size_w, size_h, null);
         
         if(drawBag){
             bag.render(g);
         }
         
-        /*g.setColor(Color.green);
-        g.drawRect((int) (pos.getWorldVar().x + bounds.getXOffset()), (int) (pos.getWorldVar().y + bounds.getYOffset()), (int) bounds.getWidth(), (int) bounds.getHeight());
-        if(pos.getWorldVar().x < 0) {
+        g.setColor(Color.green);
+        g.drawRect(16, 16, 23, 23);
+        // System.out.print(pos.getWorldX() + " ");
+        // System.out.println(pos.getWorldY());
+        
+        /*if(pos.getWorldVar().x < 0) {
         	
         }*/
     }

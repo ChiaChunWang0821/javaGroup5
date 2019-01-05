@@ -55,6 +55,14 @@ public class Vector2f {
     public Vector2f getWorldVar() {
         return new Vector2f(x - worldX, y - worldY);
     }
+    
+    public float getWorldX() {
+    	return worldX;
+    }
+    
+    public float getWorldY() {
+    	return worldY;
+    }
 
     @Override
     public String toString() {

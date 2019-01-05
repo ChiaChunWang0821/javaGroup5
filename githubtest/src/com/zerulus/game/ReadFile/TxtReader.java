@@ -13,7 +13,7 @@ public class TxtReader {
 
     public ArrayList<String> InputTalk(String filename){
         try{
-            File f = new File("C:\\Users\\User\\Desktop\\1071JAVA\\期末專案\\yt-java-game-master\\src\\com\\zerulus\\game\\ReadFile\\"+filename);
+            File f = new File("src/com/zerulus/game/ReadFile/"+filename);
             InputStreamReader read = new InputStreamReader(new FileInputStream(f),"big5");
             BufferedReader reader= new BufferedReader(read);
             String line;
