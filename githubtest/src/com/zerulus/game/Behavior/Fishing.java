@@ -11,8 +11,8 @@ public class Fishing {
     {
 
     }
-    
+
     public void render(Graphics2D g, String name, int feedCount) {
-       
+
     }
 }

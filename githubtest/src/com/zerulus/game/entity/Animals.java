@@ -1,8 +1,7 @@
 package com.zerulus.game.entity;
 
-import com.zerulus.game.Behavior.*;
+import com.zerulus.game.Behavior.AnimalsInformation;
 import com.zerulus.game.graphics.Sprite;
-import com.zerulus.game.items.Item;
 import com.zerulus.game.util.*;
 
 import java.awt.*;
@@ -16,17 +15,19 @@ public class Animals extends Entity {
     private AnimalsInformation animalsBehavior = new AnimalsInformation(sprite.getSpriteArray(DOWN));
 
     private String name;
-    private Item item;
+    private String item;
     private Camera cam;
+    private Player player;
     private int feedCount;
 
-    public Animals(String name, Item item, Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount) {
+    public Animals(String name, String item, Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount,Player player) {
         super(sprite, orgin, size);
         
         this.name = name;
         this.item = item;
         this.cam = cam;
         this.feedCount = feedCount;
+        this.player = player;
 
         acc = 1f;
         maxSpeed = 2f;
@@ -134,6 +135,7 @@ public class Animals extends Entity {
         }
         if(feedCount > 5) {
         	// add item
+            player.setInventory(item);
         	feedCount = 0;
         }
     }

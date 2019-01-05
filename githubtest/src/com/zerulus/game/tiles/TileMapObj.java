@@ -33,7 +33,6 @@ public class TileMapObj extends TileMap {
             long temp = Long.parseLong(block[i].replaceAll("\\s+",""),10);
             if(temp != 0)
             {
-                System.out.println("哈囉" + temp);
                 if(temp < 1729 && temp > 0) {
                     tempBlock = new ObjBlock(sprite[0].getSprite((int) ((temp - 1) % tileColumns[0]), (int) ((temp - 1) / tileColumns[0])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                 }

@@ -5,12 +5,11 @@ import com.zerulus.game.GamePanel;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.items.Bag;
 import com.zerulus.game.items.Inventory;
-import com.zerulus.game.items.Item;
+import com.zerulus.game.states.PlayState;
+import com.zerulus.game.util.Camera;
 import com.zerulus.game.util.KeyHandler;
 import com.zerulus.game.util.MouseHandler;
 import com.zerulus.game.util.Vector2f;
-import com.zerulus.game.states.PlayState;
-import com.zerulus.game.util.Camera;
 
 import java.awt.*;
 
@@ -21,9 +20,11 @@ public class Player extends Entity {
     private Bag bag;
     private boolean drawBag=false ;
     private Inventory inventory;
-    private Item beet = new Item("beet");
+    /*private Item beet = new Item("beet");
     private Item cabbage = new Item("cabbage");
     private Item carrot = new Item("carrot");
+    private Item flour = new Item("flour");*/
+
 
     public Player(Camera cam, Sprite sprite, Vector2f orgin, int size) {
         super(sprite, orgin, size);
@@ -35,7 +36,8 @@ public class Player extends Entity {
         bounds.setXOffset(size/4);
         bounds.setYOffset(0);
         
-        inventory = new Inventory(beet,cabbage, carrot, carrot);
+        inventory = new Inventory("beet","cabbage", "carrot", "carrot", "flour");
+        bag = new Bag(inventory);
     }
 
     private void move() {
@@ -146,20 +148,28 @@ public class Player extends Entity {
     
     public Inventory getInventory()
     {
-        return this.inventory;
+        return bag.getInventory();
     }
+
     
     public void setInventory(Inventory inventory)
     {
-        this.inventory = inventory;
+        bag.setInventory(inventory);
+        //this.inventory = inventory;
+    }
+
+    public void setInventory(String item)
+    {
+        bag.setInventory(item);
+        //this.inventory = inventory;
     }
     
-    public void addItem(Item item)
+    public void addItem(String item)
     {
         inventory.add(item);
     }
     
-    public void removeItem(Item item)
+    public void removeItem(String item)
     {
         inventory.remove(item);
     }
@@ -173,19 +183,17 @@ public class Player extends Entity {
             g.setColor(Color.red);
             g.drawRect((int) (hitBounds.getPos().getWorldVar().x + hitBounds.getXOffset()), (int) (hitBounds.getPos().getWorldVar().y + hitBounds.getYOffset()), (int) hitBounds.getWidth(), (int) hitBounds.getHeight());
         }
-        
+        //System.out.println(size_w);
+        //System.out.println(size_h);
         g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size_w, size_h, null);
         
         if(drawBag){
             bag.render(g);
         }
         
-        g.setColor(Color.green);
-        g.drawRect(16, 16, 23, 23);
-        // System.out.print(pos.getWorldX() + " ");
-        // System.out.println(pos.getWorldY());
-        
-        /*if(pos.getWorldVar().x < 0) {
+        /*g.setColor(Color.green);
+        g.drawRect((int) (pos.getWorldVar().x + bounds.getXOffset()), (int) (pos.getWorldVar().y + bounds.getYOffset()), (int) bounds.getWidth(), (int) bounds.getHeight());
+        if(pos.getWorldVar().x < 0) {
         	
         }*/
     }
@@ -216,7 +224,6 @@ public class Player extends Entity {
             
             if(key.i.clicked)
             {
-                bag = new Bag(inventory);
                 if(drawBag == false)
                 {
                     drawBag = true;
@@ -249,5 +256,9 @@ public class Player extends Entity {
             right = false;
             left = false;
         }
+    }
+
+    public void click(int x, int y) {
+        bag.click(x,y);
     }
 }

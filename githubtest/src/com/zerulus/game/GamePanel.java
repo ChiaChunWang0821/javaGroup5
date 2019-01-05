@@ -133,12 +133,12 @@ public class GamePanel extends JPanel implements Runnable {
             int thisSecond = (int) (lastUpdateTime / 1000000000);
             if (thisSecond > lastSecondTime) {
                 if (frameCount != oldFrameCount) {
-                    System.out.println("NEW SECOND " + thisSecond + " " + frameCount);
+                    //System.out.println("NEW SECOND " + thisSecond + " " + frameCount);
                     oldFrameCount = frameCount;
                 }
 
                 if (tickCount != oldTickCount) {
-                    System.out.println("NEW SECOND (T) " + thisSecond + " " + tickCount);
+                    //System.out.println("NEW SECOND (T) " + thisSecond + " " + tickCount);
                     oldTickCount = tickCount;
                 }
                 tickCount = 0;

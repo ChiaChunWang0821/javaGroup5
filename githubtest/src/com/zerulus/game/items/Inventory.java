@@ -6,39 +6,39 @@ import java.util.List;
 import java.util.Map;
 
 public class Inventory {
-    private Map<Item, Integer> items;
+    private Map<String, Integer> items;
     private int itemCount = 0;
 
-    public Inventory(Item... initialItems) {
-        items = new HashMap<Item, Integer>();
-        for (Item item : initialItems)
+    public Inventory(String... initialItems) {
+        items = new HashMap<String, Integer>();
+        for (String item : initialItems)
         {
             add(item);
         }
 
     }
 
-    public synchronized int getQuantity(Item item) {
+    public synchronized int getQuantity(String item) {
         Integer quantity = items.get(item);
         return quantity == null ? 0 : quantity;
     }
 
-    public synchronized void setQuantity(Item item, int quantity) {
+    public synchronized void setQuantity(String item, int quantity) {
         if (quantity == 0)
             items.remove(item);
         else
             items.put(item, quantity);
     }
 
-    public synchronized void add(Item item, int quantity) {
+    public synchronized void add(String item, int quantity) {
         setQuantity(item, getQuantity(item) + quantity);
     }
 
-    public void add(Item item) {
+    public void add(String item) {
         add(item, 1);
     }
 
-    public synchronized boolean remove(Item item, int quantity) {
+    public synchronized boolean remove(String item, int quantity) {
         int currentQuantity = getQuantity(item);
         if (currentQuantity < quantity)
             return false;
@@ -47,7 +47,7 @@ public class Inventory {
         return true;
     }
 
-    public boolean remove(Item item) {
+    public boolean remove(String item) {
         return remove(item, 1);
     }
 
@@ -56,14 +56,14 @@ public class Inventory {
         return items.size();
     }
 
-    public void printItems()
+    /*public void printItems()
     {
 
         for(Map.Entry<Item, Integer> entry: items.entrySet())
         {
            System.out.println(entry.getKey().getItem() + "," + entry.getValue());
         }
-    }
+    }*/
 
     public String[] getItems()
     {
@@ -72,9 +72,9 @@ public class Inventory {
             return entry.getKey();
         }*/
         List<String> list = new ArrayList<String>();
-        for(Item key: items.keySet())
+        for(String key: items.keySet())
         {
-            list.add(key.getItem());
+            list.add(key);
         }
         String[] simpleArray = new String[items.size()];
         list.toArray(simpleArray);
@@ -82,7 +82,7 @@ public class Inventory {
     }
 
 
-    public static void main (String[] args) {
+   /* public static void main (String[] args) {
         Item item1 = new Item("apple");
         Item item2 = new Item("apple2");
         Inventory invent = new Inventory();
@@ -94,6 +94,6 @@ public class Inventory {
         {
             System.out.println(s);
         }
-    }
+    }*/
 
 }
