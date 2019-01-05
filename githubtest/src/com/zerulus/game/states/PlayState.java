@@ -1,10 +1,7 @@
 package com.zerulus.game.states;
 
 import com.zerulus.game.GamePanel;
-import com.zerulus.game.entity.Animals;
-import com.zerulus.game.entity.Human;
-import com.zerulus.game.entity.Player;
-import com.zerulus.game.entity.ShopNPC;
+import com.zerulus.game.entity.*;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.tiles.TileManager;
 import com.zerulus.game.util.*;
@@ -18,6 +15,9 @@ public class PlayState extends GameState {
 	private Human enemy;
 	private TileManager tm;
 	private Camera cam;
+
+	private ArrayList<Farm> farm = new ArrayList<>(9);
+
 	private ArrayList<Animals> animals = new ArrayList<>(3);
 	private ArrayList<Human> human  = new ArrayList<>(5);
 	private ShopNPC george;
@@ -34,6 +34,16 @@ public class PlayState extends GameState {
 
 		tm = new TileManager("tile/test.xml", cam);
 
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,190)/*框框起始位置 世界座標*/,256 ,1));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,190)/*框框起始位置 世界座標*/,256 ,2));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,190)/*框框起始位置 世界座標*/,256 ,3));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,380)/*框框起始位置 世界座標*/,256 ,4));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,380)/*框框起始位置 世界座標*/,256 ,5));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,380)/*框框起始位置 世界座標*/,256 ,6));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,570)/*框框起始位置 世界座標*/,256 ,7));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,570)/*框框起始位置 世界座標*/,256 ,8));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,570)/*框框起始位置 世界座標*/,256 ,9));
+
 		player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 128);
 		george = new ShopNPC(cam, new Sprite("entity/george.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 300, (GamePanel.height / 2) + 800), 64);
 
@@ -46,7 +56,7 @@ public class PlayState extends GameState {
 		human.add(new Human(cam, new Sprite("entity/男3.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 900, (GamePanel.height / 2) + 900), 128, "Abner",player));
 		human.add(new Human(cam, new Sprite("entity/男4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1500, (GamePanel.height / 2) + 1000), 128, "Bill",player));
 		human.add(new Human(cam, new Sprite("entity/男5.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 900), 128, "Colin",player));
-		
+
 		cam.target(player);
 	}
 
@@ -93,6 +103,9 @@ public class PlayState extends GameState {
 	@Override
 	public void click(int x, int y) {
 		if(!gsm.getState(GameStateManager.PAUSE)) {
+			for(int i = 0; i < 9; i++){
+				farm.get(i).click(x, y);
+			}
 			for(int i=0;i<5;i++){
 				human.get(i).click(x,y);
 			}
@@ -112,6 +125,9 @@ public class PlayState extends GameState {
 		String tps = GamePanel.oldTickCount + " TPS";
 		Sprite.drawArray(g, tps, new Vector2f(GamePanel.width - tps.length() * 32, 64), 32, 24);
 
+		for(int i = 0; i < 9; i++){
+			farm.get(i).render(g);
+		}
 		for(int i=0;i<5;i++){
 			human.get(i).render(g);
 		}
