@@ -1,28 +1,24 @@
 package com.zerulus.game.Behavior;
 
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.states.GameStateManager;
 import com.zerulus.game.util.Vector2f;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-public class AnimalsBehavior
-{
-    BufferedImage img;
+public class Fishing {
+	BufferedImage img;
     BufferedImage imgInform;
     BufferedImage[] animal;
 
     private int iHeight=200;
     private int iWidth=320;
-    
-    private String satisfaction;
 
-    public AnimalsBehavior(BufferedImage[] spriteArray)
+    public Fishing(BufferedImage[] spriteArray)
     {
         this.animal = spriteArray;
-        
-        satisfaction = new String();
 
         imgInform= GameStateManager.inform.getSprite(0,0,520,677);
     }
@@ -34,9 +30,8 @@ public class AnimalsBehavior
         
         Font myFont = new Font ("微軟正黑體", 1, 32);
         g.setFont (myFont);
+
         
-        satisfaction = (feedCount*20 + "%");
-        
-        g.drawString("飽食度: " + satisfaction, 1000, 600);
+        g.drawString("飽食度: ", 1000, 600);
     }
 }

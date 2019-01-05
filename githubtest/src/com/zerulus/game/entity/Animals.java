@@ -13,7 +13,7 @@ public class Animals extends Entity {
     private int r;
     
     private boolean draw = false;
-    private AnimalsBehavior animalsBehavior = new AnimalsBehavior(sprite.getSpriteArray(DOWN));
+    private AnimalsInformation animalsBehavior = new AnimalsInformation(sprite.getSpriteArray(DOWN));
 
     private String name;
     private Item item;

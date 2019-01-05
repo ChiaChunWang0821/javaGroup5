@@ -89,13 +89,17 @@ public class TileManager {
                 data[i] = eElement.getElementsByTagName("data").item(0).getTextContent();
                 //System.out.println(data[i]);
 
-                if(i < 10 ) {
-
+                if(i < 10 && i != 3) {
                     tm.add(new TileMapNorm(data[i], sprite, width, height, blockWidth, blockHeight, tileColumns));
-                } else { //i==10 障礙物
+                }else if(i==10){ //i==10 障礙物
 
                     tm.add(new TileMapObj(data[i], sprite, width, height, blockWidth, blockHeight, tileColumns));
                 }
+                else if(i==3) //海邊
+                {
+                	tm.add(new TileMapFishing(data[i], sprite, width, height, blockWidth, blockHeight, tileColumns));
+                }
+                	
 
                 cam.setLimit(width * blockWidth, height * blockHeight);
 

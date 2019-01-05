@@ -33,13 +33,18 @@ public class TileMapFishing extends TileMap {
             if (temp != 0) {
                 if (temp < 1729 && temp > 0) {
                     blocks[i] = new HoleBlock(sprite[0].getSprite((int) ((temp - 1) % tileColumns[0]), (int) ((temp - 1) / tileColumns[0])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                } else if (temp >= 1729 && temp < 2753) {
+                }
+                else {
+                	temp = temp - 1728;
+                    blocks[i] = new HoleBlock(sprite[1].getSprite((int) ((temp - 1) % tileColumns[1]), (int) ((temp - 1) / tileColumns[1])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                }
+                /*else if (temp >= 1729 && temp < 2753) {
                     temp = temp - 1728;
                     blocks[i] = new HoleBlock(sprite[1].getSprite((int) ((temp - 1) % tileColumns[1]), (int) ((temp - 1) / tileColumns[1])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                 } else if (temp >= 2753) {
                     temp = temp - 2752;
                     blocks[i] = new HoleBlock(sprite[2].getSprite((int) ((temp - 1) % tileColumns[2]), (int) ((temp - 1) / tileColumns[2])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                }
+                }*/
             }
 
         }
