@@ -4,24 +4,24 @@ import java.util.Random;
 
 import com.zerulus.game.entity.Player;
 
-public class Fishing {
+public class Planting {
 
 	private Player player;
 	private String item;
 	private Random random = new Random();;
-	private int fish;
+	private int plant;
 
-    public Fishing(Player player)
+    public Planting(Player player)
     {
     	this.player = player;
-    	generateFish();
+    	generatePlant();
     }
-
-    public void generateFish() {
+    
+    public void generatePlant() {
     	item = new String();
-    	fish = random.nextInt(5);
+    	plant = random.nextInt(5);
     	
-    	switch(fish) {
+    	switch(plant) {
     	case 0:
     		// item = ("");
     		break;

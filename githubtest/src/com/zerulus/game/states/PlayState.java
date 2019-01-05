@@ -36,15 +36,15 @@ public class PlayState extends GameState {
 
 		tm = new TileManager("tile/test.xml", cam);
 
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,190)/*框框起始位置 世界座標*/,256 ,1));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,190)/*框框起始位置 世界座標*/,256 ,2));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,190)/*框框起始位置 世界座標*/,256 ,3));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,380)/*框框起始位置 世界座標*/,256 ,4));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,380)/*框框起始位置 世界座標*/,256 ,5));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,380)/*框框起始位置 世界座標*/,256 ,6));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,570)/*框框起始位置 世界座標*/,256 ,7));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,570)/*框框起始位置 世界座標*/,256 ,8));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,570)/*框框起始位置 世界座標*/,256 ,9));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,190)/*框框起始位置 世界座標*/,256 ,1, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,190)/*框框起始位置 世界座標*/,256 ,2, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,190)/*框框起始位置 世界座標*/,256 ,3, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,380)/*框框起始位置 世界座標*/,256 ,4, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,380)/*框框起始位置 世界座標*/,256 ,5, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,380)/*框框起始位置 世界座標*/,256 ,6, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,570)/*框框起始位置 世界座標*/,256 ,7, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,570)/*框框起始位置 世界座標*/,256 ,8, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,570)/*框框起始位置 世界座標*/,256 ,9, player));
 
 		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 1900), 316, 1, player));
 		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2058), 316, 2, player));

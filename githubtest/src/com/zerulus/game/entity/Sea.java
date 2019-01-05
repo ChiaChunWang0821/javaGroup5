@@ -9,15 +9,14 @@ import java.awt.*;
 
 public class Sea extends Entity{
     private Camera cam;
-    private int number;
+    // private int number;
 
     private Player player;
     private Fishing fishing;
-    private String item;
     
     public Sea(Camera cam,Sprite sprite, Vector2f orgin, int size,int number, Player player) {
         super(sprite, orgin, size);
-        this.number = number;
+        // this.number = number;
         this.cam = cam;
         this.player = player;
         
@@ -25,8 +24,6 @@ public class Sea extends Entity{
         bounds.setHeight(size/2);
         bounds.setXOffset(size/4);
         bounds.setYOffset(size/4);
-        
-        item = new String("cheese");
     }
 
     @Override
@@ -49,7 +46,7 @@ public class Sea extends Entity{
 
         if(posx > (int)pos.getWorldVar().x + (int)bounds.getXOffset() && posx < (int)pos.getWorldVar().x + (int)bounds.getXOffset() + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y + (int)bounds.getYOffset() && posy < (int)pos.getWorldVar().y + (int)bounds.getYOffset() + (int)bounds.getHeight())
         {
-            fishing = new Fishing(item, player);
+            fishing = new Fishing(player);
             return true;
         }
         return  false;
