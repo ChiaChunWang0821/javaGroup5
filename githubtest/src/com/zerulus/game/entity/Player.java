@@ -226,8 +226,10 @@ public class Player extends Entity {
             {
                 if(drawBag == false)
                 {
+                    bag.setDraw(true);
                     drawBag = true;
                 } else {
+                    bag.setDraw(false);
                     drawBag = false;
                 }
             }

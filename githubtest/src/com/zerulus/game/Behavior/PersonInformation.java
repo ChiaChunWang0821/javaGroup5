@@ -31,7 +31,7 @@ public class PersonInformation{
         load_heart(heart);
         imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
         // talkButton = new com.zerulus.game.ui.Button("Talk", 24, 12, imgButton, 100, 32, new Vector2f(30, 200), false);
-        giveButton = new com.zerulus.game.ui.Button("Give", 24, 12, imgButton, 100, 32, new Vector2f(30, 240), false);
+        giveButton = new com.zerulus.game.ui.Button("Give", 24, 12, imgButton, 100, 32, new Vector2f(30, 220), false);
     }
 
     public void setHeart(int heart) {

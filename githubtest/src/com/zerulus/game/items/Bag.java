@@ -31,6 +31,9 @@ public class Bag {
     private int index2 = 0;
     private int x = 200;
     private int y = 0;
+
+    private boolean draw;
+
     public Bag(Inventory inventory)
     {
         this.inventory = inventory;
@@ -66,6 +69,7 @@ public class Bag {
 
     public void setInventory(Inventory inv){
         this.inventory = inv;
+        loadItem();
     }
 
     public void setInventory(String item){
@@ -118,11 +122,10 @@ public class Bag {
     public void  click(int x, int y){
         int choose;
         choose = clickInside(x,y);
-        if(choose!=9){
+        if(choose!=9 && draw==true){
             inventory.remove(bagArray[choose]);
             bagArray=inventory.getItems();
             loadItem();
-
         }
         loadItem();
     }
@@ -142,5 +145,9 @@ public class Bag {
                 i++;
             }
         }
+    }
+
+    public void setDraw(boolean b) {
+        draw = b;
     }
 }

@@ -41,11 +41,11 @@ public class PlayState extends GameState {
 		animals.add(new Animals("Llama", new String("fig"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 128, 1,player));
 		animals.add(new Animals("Pig", new String("meat"), cam, new Sprite("entity/pig_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 800, (GamePanel.height / 2) + 200), 128, 1,player));
 
-		human.add(new Human(cam, new Sprite("entity/男1_2.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 1300), 128, "Gray"));
-		human.add(new Human(cam, new Sprite("entity/男2_4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1500, (GamePanel.height / 2) + 1500), 128, "Tashi"));
-		human.add(new Human(cam, new Sprite("entity/男3.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 900, (GamePanel.height / 2) + 900), 128, "Abner"));
-		human.add(new Human(cam, new Sprite("entity/男4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1500, (GamePanel.height / 2) + 1000), 128, "Bill"));
-		human.add(new Human(cam, new Sprite("entity/男5.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 900), 128, "Colin"));
+		human.add(new Human(cam, new Sprite("entity/男1_2.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 1300), 128, "Gray",player));
+		human.add(new Human(cam, new Sprite("entity/男2_4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1500, (GamePanel.height / 2) + 1500), 128, "Tashi",player));
+		human.add(new Human(cam, new Sprite("entity/男3.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 900, (GamePanel.height / 2) + 900), 128, "Abner",player));
+		human.add(new Human(cam, new Sprite("entity/男4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1500, (GamePanel.height / 2) + 1000), 128, "Bill",player));
+		human.add(new Human(cam, new Sprite("entity/男5.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 900), 128, "Colin",player));
 		
 		cam.target(player);
 	}
@@ -54,9 +54,9 @@ public class PlayState extends GameState {
 		Vector2f.setWorldVar(map.x, map.y);
 		if(!gsm.getState(GameStateManager.PAUSE)) {
 			player.update(enemy, time);
-			for(int i=0;i<5;i++){
+			/*for(int i=0;i<5;i++){
 				human.get(i).update(player);
-			}
+			}*/
 			for(int i = 0; i < 3; i++) {
 				animals.get(i).update(player);
 			}
@@ -66,7 +66,7 @@ public class PlayState extends GameState {
 		
 		for(int i=0;i<5;i++){
 			if(human.get(i).getMarry()){
-				gsm.pop(GameStateManager.PLAY);
+				// gsm.pop(GameStateManager.PLAY);
 				gsm.add(GameStateManager.MARRY);
 				break;
 			}
@@ -112,7 +112,6 @@ public class PlayState extends GameState {
 		String tps = GamePanel.oldTickCount + " TPS";
 		Sprite.drawArray(g, tps, new Vector2f(GamePanel.width - tps.length() * 32, 64), 32, 24);
 
-		player.render(g);
 		for(int i=0;i<5;i++){
 			human.get(i).render(g);
 		}
@@ -121,5 +120,6 @@ public class PlayState extends GameState {
 		}
 		george.render(g);
 		cam.render(g);
+		player.render(g);
 	}
 }

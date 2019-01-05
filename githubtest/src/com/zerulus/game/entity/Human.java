@@ -4,6 +4,8 @@ import com.zerulus.game.Behavior.PersonInformation;
 import com.zerulus.game.Behavior.Talk;
 import com.zerulus.game.ReadFile.TxtReader;
 import com.zerulus.game.graphics.Sprite;
+import com.zerulus.game.items.Bag;
+import com.zerulus.game.items.Inventory;
 import com.zerulus.game.util.*;
 
 import java.awt.*;
@@ -17,20 +19,22 @@ public class Human extends Entity {
     private PersonInformation pInform;
     private boolean draw=false;
 
+    private Player player;
     private Talk talkframe;
     private ArrayList<String> talk ;
     private final String name;
     private int talkTime=0;
     private boolean marry;
-
-
+    private boolean drawBag;
+    private Inventory inv;
+    private Bag bag;
     private Camera cam;
 
-
-    public Human(Camera cam, Sprite sprite, Vector2f orgin, int size, String name) {
+    public Human(Camera cam, Sprite sprite, Vector2f orgin, int size, String name,Player player) {
         super(sprite, orgin, size);
         this.name = name;
         this.cam = cam;
+        this.player = player;
 
         pInform = new PersonInformation(heart,sprite.getSpriteArray(DOWN),name);
         talkframe= new Talk(name);
@@ -50,7 +54,7 @@ public class Human extends Entity {
         talk = tmp.InputTalk(name+".txt");
     }
 
-    public void move(Player player) {
+    /*public void move(Player player) {
         if (sense.colCircleBox(player.getBounds())) {
             if (pos.y > player.pos.y + 1) {
                 dy -= acc;
@@ -126,7 +130,7 @@ public class Human extends Entity {
                 destroy();
             }
         }
-    }
+    }*/
 
     @Override
     public void render(Graphics2D g) {
@@ -144,6 +148,10 @@ public class Human extends Entity {
             pInform.render(g);
             talkframe.render(g);
         }
+
+        if(drawBag){
+            bag.render(g);
+        }
     }
 
     public boolean clickInside(int posx, int posy){
@@ -157,7 +165,8 @@ public class Human extends Entity {
     }
 
     public void  click(int x, int y){
-    	if(clickInside(x,y)){
+        int i;
+        if(clickInside(x,y)){
             talkTime++;
             if(draw==true){
                 if(talkTime==1 || talkTime==2){
@@ -166,12 +175,6 @@ public class Human extends Entity {
                 else{
                     draw=false;
                     talkTime=0;
-                    heart++;
-                    if(heart==5){
-                        heart=4;
-                        marry=true;
-                    }
-                    pInform.setHeart(heart);
                     setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
                 }
             }
@@ -181,8 +184,98 @@ public class Human extends Entity {
                 setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
             }
         }
+        if(draw==true && clickButton(x,y)){
+            if(drawBag==false){
+                this.inv = player.getInventory();
+                this.bag = new Bag(inv);
+                bag.setDraw(true);
+                drawBag=true;
+            }
+            else{
+                drawBag=false;
+            }
+        }
+        if(draw==true && drawBag==true && (i=clickBag(x,y))!=9){
+            //System.out.println(i);
+            String s = inv.getItems()[i];
+            checkLike(s);
+            player.removeItem(s);
+            //this.inv = player.getInventory();
+            //this.bag = new Bag(inv);
+        }
     }
-    
+
+    private void checkLike(String s){
+        drawBag=false;
+        if(s.equals(talk.get(20)) || s.equals(talk.get(21)) || s.equals(talk.get(22))){
+            talkframe.setContext(talk.get((heart)*4+2));
+            heart++;
+            pInform.setHeart(heart);
+            if(heart==5){
+                heart=4;
+                marry=true;
+            }
+        }
+        else if(s.equals(talk.get(23)) || s.equals(talk.get(24)) || s.equals(talk.get(25))){
+            talkframe.setContext(talk.get((heart)*4+3));
+            if(heart!=0){
+                heart--;
+            }
+            pInform.setHeart(heart);
+        }
+        else{
+            talkframe.setContext("好 謝謝");
+        }
+        talkTime=0;
+        this.inv = player.getInventory();
+        this.bag=new Bag(inv);
+    }
+
+    private int clickBag(int x, int y) {
+        if(y >130 && y < 200){
+            if(x >840 && x <910){
+                return 0;
+            }
+            else if(x>930 && x<1000){
+                return 1;
+            }
+            else if(x>1020 && x<1090){
+                return 2;
+            }
+        }
+        else if(y > 230 && y<300){
+            if(x >840 && x <910){
+                return 3;
+            }
+            else if(x>930 && x<1000){
+                return 4;
+            }
+            else if(x>1020 && x<1090){
+                return 5;
+            }
+        }
+        else if(y>330 && y<400){
+            if(x >840 && x <910){
+                return 6;
+            }
+            else if(x>930 && x<1000){
+                return 7;
+            }
+            else if(x>1020 && x<1090){
+                return 8;
+            }
+        }
+        return  9;
+    }
+
+    private boolean clickButton(int x, int y) {
+        System.out.println(x+" "+y);
+        if(x > 83 && x <176 && y > 238 && y < 264 ){
+            return true;
+        }
+        return false;
+    }
+
     public int getHeart() {
         return heart;
     }
