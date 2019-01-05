@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 public class PersonInformation{
 
     int heart;
+    String name;
     BufferedImage img;
     BufferedImage imgInform;
     BufferedImage[] person;
@@ -22,13 +23,14 @@ public class PersonInformation{
     private int iWidth=320;
 
 
-    public PersonInformation(int heart, BufferedImage[] spriteArray){
+    public PersonInformation(int heart, BufferedImage[] spriteArray, String name){
         imgInform= GameStateManager.inform.getSprite(0,0,520,677);
+        this.name = name;
         this.heart = heart;
         this.person = spriteArray;
         load_heart(heart);
         imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
-        talkButton = new com.zerulus.game.ui.Button("Talk", 24, 12, imgButton, 100, 32, new Vector2f(30, 200), false);
+        // talkButton = new com.zerulus.game.ui.Button("Talk", 24, 12, imgButton, 100, 32, new Vector2f(30, 200), false);
         giveButton = new com.zerulus.game.ui.Button("Give", 24, 12, imgButton, 100, 32, new Vector2f(30, 240), false);
     }
 
@@ -37,7 +39,7 @@ public class PersonInformation{
     }
 
     private void load_heart(int heart){
-        try {
+    	try {
             img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("entity/heart.png"));
         }catch (Exception e){
             System.out.println("ERROR: could not load file: " + "entity/heart.png");
@@ -45,17 +47,13 @@ public class PersonInformation{
     }
 
     public void render(Graphics2D g){
-        g.drawImage(imgInform, (int) 0, (int) 10, iWidth, iHeight, null);
+    	g.drawImage(imgInform, (int) 0, (int) 10, iWidth, iHeight, null);
         g.drawImage(person[0], (int) 30, (int) 20, 128, 128, null);
-        Sprite.drawArray(g, "Lily", new Vector2f(30+128, 64), 32, 24);
-        for(int i=0;i<5;i++){
-            g.drawImage(img,(int)30+i*32,(int)160,32,32,null);
+        Sprite.drawArray(g, name, new Vector2f(30+128, 64), 32, 24);
+        for(int i=0;i<heart;i++){
+            g.drawImage(img,(int)30+i*48,(int)160,32,32,null);
         }
-        /*Font myFont = new Font ("微軟正黑體", 1, 32);
-        g.setColor(Color.white);
-        g.setFont (myFont);
-        g.drawString("嗨",30,200);*/
         giveButton.render(g);
-        talkButton.render(g);
+        //talkButton.render(g);
     }
 }

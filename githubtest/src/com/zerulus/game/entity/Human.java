@@ -1,30 +1,40 @@
 package com.zerulus.game.entity;
 
 import com.zerulus.game.Behavior.PersonInformation;
+import com.zerulus.game.Behavior.Talk;
+import com.zerulus.game.ReadFile.TxtReader;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.util.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Human extends Entity {
 
     private AABB sense;
     private int r;
     private int heart=0;
-    private PersonInformation pInform = new PersonInformation(heart,sprite.getSpriteArray(DOWN));
+    private PersonInformation pInform;
     private boolean draw=false;
-    //private final String name;
+
+    private Talk talkframe;
+    private ArrayList<String> talk ;
+    private final String name;
+    private int talkTime=0;
+    private boolean marry;
 
 
     private Camera cam;
 
 
-    public Human(Camera cam, Sprite sprite, Vector2f orgin, int size) {
+    public Human(Camera cam, Sprite sprite, Vector2f orgin, int size, String name) {
         super(sprite, orgin, size);
-        //this.name = name;
-
+        this.name = name;
         this.cam = cam;
 
+        pInform = new PersonInformation(heart,sprite.getSpriteArray(DOWN),name);
+        talkframe= new Talk(name);
+        
         acc = 1f;
         maxSpeed = 2f;
         r = 350;
@@ -35,6 +45,9 @@ public class Human extends Entity {
         bounds.setYOffset(size/4);
 
         sense = new AABB(new Vector2f(orgin.x + size / 2 - r / 2, orgin.y + size / 2 - r / 2), r);
+        
+        TxtReader tmp = new TxtReader();
+        talk = tmp.InputTalk(name+".txt");
     }
 
     public void move(Player player) {
@@ -91,6 +104,10 @@ public class Human extends Entity {
     private void destroy() {
 
     }
+    
+    public void setHeart(int heart){
+        this.heart = heart;
+    }
 
     public void update(Player player) {
         if(cam.getBounds().collides(this.bounds)) {
@@ -125,6 +142,7 @@ public class Human extends Entity {
         }
         if(draw==true){
             pInform.render(g);
+            talkframe.render(g);
         }
     }
 
@@ -139,9 +157,37 @@ public class Human extends Entity {
     }
 
     public void  click(int x, int y){
-        if(clickInside(x,y)){
-            if(draw==true){draw=false;setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);}
-            else{draw=true;setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);}
+    	if(clickInside(x,y)){
+            talkTime++;
+            if(draw==true){
+                if(talkTime==1 || talkTime==2){
+                    talkframe.setContext(talk.get((heart)*4+(talkTime-1)));  // 更換對話
+                }
+                else{
+                    draw=false;
+                    talkTime=0;
+                    heart++;
+                    if(heart==5){
+                        heart=4;
+                        marry=true;
+                    }
+                    pInform.setHeart(heart);
+                    setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
+                }
+            }
+            else{
+                draw=true;
+                talkframe.setContext(talk.get((heart)*4+0));
+                setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
+            }
         }
+    }
+    
+    public int getHeart() {
+        return heart;
+    }
+
+    public boolean getMarry(){
+        return marry;
     }
 }
