@@ -36,6 +36,8 @@ public class PlayState extends GameState {
 
 		tm = new TileManager("tile/test.xml", cam);
 
+        player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 128);
+
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,190)/*框框起始位置 世界座標*/,256 ,1, player));
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,190)/*框框起始位置 世界座標*/,256 ,2, player));
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,190)/*框框起始位置 世界座標*/,256 ,3, player));
@@ -57,12 +59,11 @@ public class PlayState extends GameState {
 		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3164), 316, 9, player));
 		
 		// sea = new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3164), 316, 10);
-		
-		player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 128);
-		george = new ShopNPC(cam, new Sprite("entity/george.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 300, (GamePanel.height / 2) + 800), 64);
+
+		//george = new ShopNPC(cam, new Sprite("entity/george.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 300, (GamePanel.height / 2) + 800), 64);
 
 		animals.add(new Animals("Cow", new String("milk"), cam, new Sprite("entity/cow_walk.png",128, 128), new Vector2f(0+(GamePanel.width / 2)+200 , (GamePanel.height / 2)+200), 256, 1, player));
-		animals.add(new Animals("Llama", new String("fig"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 128, 1, player));
+		animals.add(new Animals("Llama", new String("wool"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 128, 1, player));
 		animals.add(new Animals("Pig", new String("meat"), cam, new Sprite("entity/pig_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 800, (GamePanel.height / 2) + 200), 128, 1, player));
 
 		human.add(new Human(cam, new Sprite("entity/男1_2.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 1300), 128, "Gray",player));
@@ -84,7 +85,7 @@ public class PlayState extends GameState {
 			for(int i = 0; i < 3; i++) {
 				animals.get(i).update(player);
 			}
-			george.update(player);
+			//george.update(player);
 			cam.update();
 		}
 		
@@ -130,7 +131,7 @@ public class PlayState extends GameState {
 			for(int i = 0; i < 3; i++) {
 				animals.get(i).click(x, y);
 			}
-			george.click(x,y);
+			//george.click(x,y);
 			player.click(x,y);
 		}
 	}
@@ -156,7 +157,7 @@ public class PlayState extends GameState {
 		for(int i = 0; i < 3; i++) {
 			animals.get(i).render(g);
 		}
-		george.render(g);
+		//george.render(g);
 		cam.render(g);
 		player.render(g);
 	}

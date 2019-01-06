@@ -1,8 +1,8 @@
 package com.zerulus.game.Behavior;
 
-import java.util.Random;
-
 import com.zerulus.game.entity.Player;
+
+import java.util.Random;
 
 public class Planting {
 
@@ -14,38 +14,42 @@ public class Planting {
     public Planting(Player player)
     {
     	this.player = player;
-    	generatePlant();
+        generatePlant();
     }
-    
+
+    public String getItem(){
+        return item;
+    }
+
     public void generatePlant() {
     	item = new String();
     	plant = random.nextInt(5);
     	
     	switch(plant) {
     	case 0:
-    		// item = ("");
+    		item = ("cabbage");
     		break;
     	case 1:
-    		// item = ("");
+    	    item = ("broccoli");
     		break;
     	case 2:
-    		// item = ("");
+    		item = ("fig");
     		break;
     	case 3:
-    		// item = ("");
+    		item = ("beet");
     		break;
     	case 4:
-    		// item = ("");
+    		item = ("carrot");
     		break;
     	case 5:
-    		// item = ("");
+    		item = ("potato");
     		break;
     	default:
     		break;
     	}
     }
     
-    public void click() {
+    /*public void click() {
     	player.setInventory(item);
-    }
+    }*/
 }

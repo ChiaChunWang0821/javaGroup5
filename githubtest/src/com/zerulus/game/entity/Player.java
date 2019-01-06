@@ -20,10 +20,6 @@ public class Player extends Entity {
     private Bag bag;
     private boolean drawBag=false ;
     private Inventory inventory;
-    /*private Item beet = new Item("beet");
-    private Item cabbage = new Item("cabbage");
-    private Item carrot = new Item("carrot");
-    private Item flour = new Item("flour");*/
 
 
     public Player(Camera cam, Sprite sprite, Vector2f orgin, int size) {
@@ -148,25 +144,32 @@ public class Player extends Entity {
     
     public Inventory getInventory()
     {
-        return bag.getInventory();
+        return inventory;
     }
 
     
     public void setInventory(Inventory inventory)
     {
-        bag.setInventory(inventory);
-        //this.inventory = inventory;
+        //bag.setInventory(inventory);
+        this.inventory = inventory;
     }
 
     public void setInventory(String item)
     {
-        bag.setInventory(item);
+        //bag.setInventory(item);
+        inventory.add(item);
+        bag=new Bag(inventory);
+        //bag.setInventory(inventory);
+
         //this.inventory = inventory;
     }
     
     public void addItem(String item)
     {
+
         inventory.add(item);
+        bag = new Bag(inventory);
+        //bag.setInventory(item);
     }
     
     public void removeItem(String item)
@@ -226,6 +229,7 @@ public class Player extends Entity {
             {
                 if(drawBag == false)
                 {
+                    bag=new Bag(inventory);
                     bag.setDraw(true);
                     drawBag = true;
                 } else {
@@ -261,6 +265,6 @@ public class Player extends Entity {
     }
 
     public void click(int x, int y) {
-        bag.click(x,y);
+        //bag.click(x,y);
     }
 }

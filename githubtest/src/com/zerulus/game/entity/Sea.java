@@ -2,6 +2,7 @@ package com.zerulus.game.entity;
 
 import com.zerulus.game.Behavior.Fishing;
 import com.zerulus.game.graphics.Sprite;
+import com.zerulus.game.items.Inventory;
 import com.zerulus.game.util.Camera;
 import com.zerulus.game.util.Vector2f;
 
@@ -9,17 +10,18 @@ import java.awt.*;
 
 public class Sea extends Entity{
     private Camera cam;
+    private Inventory inv;
     // private int number;
 
     private Player player;
     private Fishing fishing;
-    
+
     public Sea(Camera cam,Sprite sprite, Vector2f orgin, int size,int number, Player player) {
         super(sprite, orgin, size);
         // this.number = number;
         this.cam = cam;
         this.player = player;
-        
+
         bounds.setWidth(size/2);
         bounds.setHeight(size/2);
         bounds.setXOffset(size/4);
@@ -44,7 +46,7 @@ public class Sea extends Entity{
         // System.out.println(posx);
         // System.out.println(posy);
 
-        if(posx > (int)pos.getWorldVar().x + (int)bounds.getXOffset() && posx < (int)pos.getWorldVar().x + (int)bounds.getXOffset() + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y + (int)bounds.getYOffset() && posy < (int)pos.getWorldVar().y + (int)bounds.getYOffset() + (int)bounds.getHeight())
+        if(posx > (int)pos.getWorldVar().x && posx < (int)pos.getWorldVar().x + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y  && posy < (int)pos.getWorldVar().y  + (int)bounds.getHeight())
         {
             fishing = new Fishing(player);
             return true;
@@ -56,14 +58,12 @@ public class Sea extends Entity{
     {
         if(clickInside(x,y))
         {
+            System.out.println(fishing.getItem());
+            player.addItem(fishing.getItem());
             /*if(number == 1)
                 System.out.println(number + "SEA YA");*/
 
-            fishing.click();
+           // fishing.click();
         }
-        /*else {
-            if(number == 1)
-                System.out.println(number + "SEA NO");
-        }*/
     }
 }

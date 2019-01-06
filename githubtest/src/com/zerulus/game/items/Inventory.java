@@ -26,8 +26,9 @@ public class Inventory {
     public synchronized void setQuantity(String item, int quantity) {
         if (quantity == 0)
             items.remove(item);
-        else
+        else{
             items.put(item, quantity);
+        }
     }
 
     public synchronized void add(String item, int quantity) {

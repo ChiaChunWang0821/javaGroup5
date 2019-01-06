@@ -269,7 +269,6 @@ public class Human extends Entity {
     }
 
     private boolean clickButton(int x, int y) {
-        System.out.println(x+" "+y);
         if(x > 83 && x <176 && y > 238 && y < 264 ){
             return true;
         }

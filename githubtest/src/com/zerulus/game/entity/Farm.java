@@ -2,6 +2,7 @@ package com.zerulus.game.entity;
 
 import com.zerulus.game.Behavior.Planting;
 import com.zerulus.game.graphics.Sprite;
+import com.zerulus.game.items.Inventory;
 import com.zerulus.game.util.Camera;
 import com.zerulus.game.util.Vector2f;
 
@@ -9,17 +10,18 @@ import java.awt.*;
 
 public class Farm extends Entity{
     private Camera cam;
+    private Inventory inv;
     // private int number;
-    
+
     private Player player;
     private Planting planting;
-    
+
     public Farm(Camera cam,Sprite sprite, Vector2f orgin, int size, int number, Player player) {
         super(sprite, orgin, size);
         // this.number = number;
         this.cam = cam;
         this.player = player;
-        
+
         bounds.setWidth(size/2);
         bounds.setHeight(size/2);
         bounds.setXOffset(size/4);
@@ -43,10 +45,9 @@ public class Farm extends Entity{
         // pos是視窗座標
         // System.out.println(posx);
         // System.out.println(posy);
-
-        if(posx > (int)pos.getWorldVar().x + (int)bounds.getXOffset() && posx < (int)pos.getWorldVar().x + (int)bounds.getXOffset() + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y + (int)bounds.getYOffset() && posy < (int)pos.getWorldVar().y + (int)bounds.getYOffset() + (int)bounds.getHeight())
+        if(posx > (int)pos.getWorldVar().x  && posx < (int)pos.getWorldVar().x + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y && posy < (int)pos.getWorldVar().y + (int)bounds.getHeight())
         {
-        	planting = new Planting(player);
+            planting = new Planting(player);
             return true;
         }
         return  false;
@@ -56,12 +57,9 @@ public class Farm extends Entity{
     {
         if(clickInside(x,y))
         {
-            // System.out.println(number + "YA點我");
-        	planting.click();
+            System.out.println(planting.getItem());
+            player.addItem(planting.getItem());
         }
-        /*else {
-            System.out.println(number + "不是我");
-        }*/
     }
 
 

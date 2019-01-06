@@ -1,8 +1,8 @@
 package com.zerulus.game.Behavior;
 
-import java.util.Random;
-
 import com.zerulus.game.entity.Player;
+
+import java.util.Random;
 
 public class Fishing {
 
@@ -16,6 +16,10 @@ public class Fishing {
     	this.player = player;
     	generateFish();
     }
+
+	public String getItem(){
+		return item;
+	}
 
     public void generateFish() {
     	item = new String();
@@ -45,7 +49,7 @@ public class Fishing {
     	}
     }
     
-    public void click() {
+    /*public void click() {
     	player.setInventory(item);
-    }
+    }*/
 }
