@@ -27,7 +27,7 @@ public class Talk {
         Font myFont = new Font ("微軟正黑體", 1, 32);
         g.setColor(Color.BLACK);
         g.setFont (myFont);
-        g.drawString(context,300,550);
+        g.drawString(context,250,550);
     }
 
 

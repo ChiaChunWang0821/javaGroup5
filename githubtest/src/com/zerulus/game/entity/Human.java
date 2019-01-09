@@ -167,21 +167,27 @@ public class Human extends Entity {
     public void  click(int x, int y){
         int i;
         if(clickInside(x,y)){
-            talkTime++;
-            if(draw==true){
-                if(talkTime==1 || talkTime==2){
-                    talkframe.setContext(talk.get((heart)*4+(talkTime-1)));  // 更換對話
-                }
-                else{
-                    draw=false;
-                    talkTime=0;
-                    setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
-                }
+            if(talkTime==-1){
+                draw=false;
+                talkTime=0;
             }
             else{
-                draw=true;
-                talkframe.setContext(talk.get((heart)*4+0));
-                setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
+                talkTime++;
+                if(draw==true){
+                    if(talkTime==1 || talkTime==2){
+                        talkframe.setContext(talk.get((heart)*4+(talkTime-1)));  // 更換對話
+                    }
+                    else{
+                        draw=false;
+                        talkTime=0;
+                        setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
+                    }
+                }
+                else{
+                    draw=true;
+                    talkframe.setContext(talk.get((heart)*4+0));
+                    setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
+                }
             }
         }
         if(draw==true && clickButton(x,y)){
@@ -226,7 +232,8 @@ public class Human extends Entity {
         else{
             talkframe.setContext("好 謝謝");
         }
-        talkTime=0;
+        talkTime=-1;
+        //draw=false;
         this.inv = player.getInventory();
         this.bag=new Bag(inv);
     }

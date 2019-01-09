@@ -69,7 +69,7 @@ public class KeyHandler implements KeyListener{
         if(e.getKeyCode() == KeyEvent.VK_S) down.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_A) left.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_D) right.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_SPACE) attack.toggle(pressed);
+         // if(e.getKeyCode() == KeyEvent.VK_SPACE) attack.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_E) menu.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_ENTER) enter.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE) escape.toggle(pressed);

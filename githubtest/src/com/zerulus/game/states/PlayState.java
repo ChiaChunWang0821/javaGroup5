@@ -6,7 +6,9 @@ import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.tiles.TileManager;
 import com.zerulus.game.util.*;
 
+import javax.sound.sampled.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 public class PlayState extends GameState {
@@ -23,11 +25,30 @@ public class PlayState extends GameState {
 	private ArrayList<Animals> animals = new ArrayList<>(3);
 	private ArrayList<Human> human  = new ArrayList<>(5);
 	private ShopNPC george;
-
+	String music = "res/background/music02.wav";
 	public static Vector2f map;
+	protected static boolean musicStop;
+	Clip clip;
 
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
+		System.out.println(musicStop);
+
+		try {
+			File file = new File(music);
+			AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+			AudioFormat format = ais.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			clip = (Clip)AudioSystem.getLine(info);
+			clip.open(ais);
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+		}
+
+
+
 
 		map = new Vector2f();
 		Vector2f.setWorldVar(map.x, map.y);
@@ -36,7 +57,7 @@ public class PlayState extends GameState {
 
 		tm = new TileManager("tile/test.xml", cam);
 
-        player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 128);
+        player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2)+500, 0 + (GamePanel.height / 2) + 1300), 128);
 
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,190)/*框框起始位置 世界座標*/,256 ,1, player));
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,190)/*框框起始位置 世界座標*/,256 ,2, player));
@@ -95,6 +116,12 @@ public class PlayState extends GameState {
 				gsm.add(GameStateManager.MARRY);
 				break;
 			}
+		}
+		if (musicStop){
+			clip.stop();
+		}
+		else {
+			clip.start();
 		}
 	}
 

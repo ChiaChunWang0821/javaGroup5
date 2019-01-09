@@ -19,6 +19,7 @@ public class GameStateManager {
     public static final int MENU = 1;
     public static final int PAUSE = 2;
     public static final int MARRY = 3;
+    public static final int FIRST = 4;
 
     public int onTopState = 0;
 
@@ -34,7 +35,7 @@ public class GameStateManager {
         map = new Vector2f(GamePanel.width, GamePanel.height);
         Vector2f.setWorldVar(map.x, map.y);
 
-        states = new GameState[4];
+        states = new GameState[5];
 
         font = new Font("font/font.png", 10, 10);
         Sprite.currentFont = font;
@@ -46,8 +47,9 @@ public class GameStateManager {
         shopMenu = new Sprite("ui/board.jpg", 64, 64);
         // shopButton = new Sprite("ui/greenSheet.png", 64, 64);
         talk = new Sprite("ui/talk1.png",64,64);
-        
-        states[PLAY] = new PlayState(this);
+
+        states[FIRST] = new Firststate(this);
+
     }
 
     public boolean getState(int state) {
@@ -61,7 +63,9 @@ public class GameStateManager {
     public void add(int state) {
         if (states[state] != null)
             return;
-
+        if (state == FIRST) {
+            states[FIRST] = new Firststate(this);
+        }
         if (state == PLAY) {
             states[PLAY] = new PlayState(this);
         }

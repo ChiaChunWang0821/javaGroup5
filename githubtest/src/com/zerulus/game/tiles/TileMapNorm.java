@@ -44,8 +44,12 @@ public class TileMapNorm extends TileMap {
         int y = (int) ((cam.getPos().y) / tileHeight);
         for(int i = x; i < x + (cam.getWidth() / tileWidth); i++) {
             for(int j = y; j < y + (cam.getHeight() / tileHeight); j++) {
-                if(blocks[i + (j * height)] != null)
+                try{
+                    if(blocks[i + (j * height)] != null)
                     blocks[i + (j * height)].render(g);
+                }catch(ArrayIndexOutOfBoundsException ae){
+                    //System.out.println(ae);
+                }
             }
         }
     }
