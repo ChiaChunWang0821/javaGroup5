@@ -13,10 +13,10 @@ public abstract class Entity {
 
     protected final int ATTACK = 5;
     protected final int FALLEN = 4;
-    protected final int UP = 3;
-    protected final int DOWN = 0;
-    protected final int LEFT = 1;
-    protected final int RIGHT = 2;
+    protected int UP = 3;
+    protected int DOWN = 0;
+    protected int LEFT = 1;
+    protected int RIGHT = 2;
 
     protected int currentAnimation;
 
@@ -70,10 +70,26 @@ public abstract class Entity {
 
         tc = new TileCollision(this);
     }
-    public Entity(Sprite sprite, Vector2f orgin, int size_h, int size_w) {
+    
+    // public Entity(Sprite sprite, Vector2f orgin, int size_h, int size_w)
+    public Entity(Sprite sprite, Vector2f orgin, int size, int pet){
         this.sprite = sprite;
         pos = orgin;
-        this.size_w = size_w;
+        
+        this.size = size;
+        if(pet == 1){
+            UP = 2;
+            DOWN = 0;
+            RIGHT = 1;
+            LEFT = 3;
+        }
+        bounds = new AABB(orgin, size, size);
+        hitBounds = new AABB(orgin, size, size);
+        hitBounds.setXOffset(size_w/ 2);
+
+        ani = new Animation();
+        setAnimation(2, sprite.getSpriteArray(DOWN), 10);
+        /*this.size_w = size_w;
         this.size_h = size_h;
 
         bounds = new AABB(orgin, size_w, size_h);
@@ -81,10 +97,11 @@ public abstract class Entity {
         hitBounds.setXOffset(size_w / 2);
 
         ani = new Animation();
-        setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);
+        setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);*/
 
         tc = new TileCollision(this);
     }
+    
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }

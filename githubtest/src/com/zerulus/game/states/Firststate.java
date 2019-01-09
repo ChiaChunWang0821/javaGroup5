@@ -21,6 +21,7 @@ public class Firststate extends GameState{
     private static boolean musicStopFirst = true;
     // private int posX=10;
     String music = "res/background/music01.wav";
+    String musicclick = "res/background/click_first.wav";
     Clip clip;
     public Firststate(GameStateManager gsm){
         super(gsm);
@@ -61,6 +62,20 @@ public class Firststate extends GameState{
 
     @Override
     public void click(int x, int y) {
+    	try {
+            Clip clickclip;
+            File file = new File(musicclick);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+            AudioFormat format = ais.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            clickclip = (Clip)AudioSystem.getLine(info);
+            clickclip.open(ais);
+            clickclip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("NO SOUND");
+        }
+    	
         if(x <= 100 + 350 & y <= 500 + 120 & x > 100 & y > 500){
             loading = true;
             PlayState.musicStop = false;
