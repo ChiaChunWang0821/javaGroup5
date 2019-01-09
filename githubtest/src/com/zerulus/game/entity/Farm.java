@@ -37,9 +37,6 @@ public class Farm extends Entity {
     public void render(Graphics2D g) //畫出菜!
     {
         if(cam.getBounds().collides(this.bounds)) {
-            g.setColor(Color.green);
-            g.drawRect((int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), (int) bounds.getWidth(), (int) bounds.getHeight());
-
             if(vegetableSprite!=null)
             {
                 if(backgroundWating.test==1) {
