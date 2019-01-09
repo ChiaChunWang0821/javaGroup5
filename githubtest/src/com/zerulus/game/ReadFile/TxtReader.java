@@ -5,11 +5,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TxtReader {
     private ArrayList<String> arr = new ArrayList<String>();
-    private static Scanner input;
 
     public ArrayList<String> InputTalk(String filename){
         try{
@@ -37,12 +35,11 @@ public class TxtReader {
             while((line=reader.readLine())!=null){
                 arr.add(line);
             }
-
         }catch (Exception e){
             System.out.println(e);
             System.out.println("File cannot read....");
         }
+        
         return arr;
     }
-
 }

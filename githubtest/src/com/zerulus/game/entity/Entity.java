@@ -71,7 +71,6 @@ public abstract class Entity {
         tc = new TileCollision(this);
     }
     
-    // public Entity(Sprite sprite, Vector2f orgin, int size_h, int size_w)
     public Entity(Sprite sprite, Vector2f orgin, int size, int pet){
         this.sprite = sprite;
         pos = orgin;
@@ -89,15 +88,6 @@ public abstract class Entity {
 
         ani = new Animation();
         setAnimation(2, sprite.getSpriteArray(DOWN), 10);
-        /*this.size_w = size_w;
-        this.size_h = size_h;
-
-        bounds = new AABB(orgin, size_w, size_h);
-        hitBounds = new AABB(orgin, size_w, size_h);
-        hitBounds.setXOffset(size_w / 2);
-
-        ani = new Animation();
-        setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);*/
 
         tc = new TileCollision(this);
     }
@@ -149,10 +139,6 @@ public abstract class Entity {
     public int getSize() {
         return size;
     }
-    
-    /*public Vector2f getPosition() {
-    	return pos;
-    }*/
 
     public Animation getAnimation() {
         return ani;

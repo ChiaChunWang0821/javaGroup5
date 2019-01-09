@@ -108,5 +108,4 @@ public class Button {
         Sprite.drawArray(g, label, lbPos, lbWidth, lbHeight);
         g.drawImage(image, (int) iPos.x, (int) iPos.y, iWidth, iHeight, null);
     }
-
 }

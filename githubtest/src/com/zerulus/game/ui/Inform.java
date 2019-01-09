@@ -18,8 +18,6 @@ public class Inform {
         this.iWidth = iWidth;
         this.iHeight = iHeight;
         this.offset = offset;
-
-
     }
 
     public void input(MouseHandler mouse, KeyHandler key){}

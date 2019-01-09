@@ -47,5 +47,4 @@ public class MarryState extends GameState{
             Sprite.drawArray(g, "Success !!", new Vector2f(158, 80), 64, 48);
         }
     }
-
 }

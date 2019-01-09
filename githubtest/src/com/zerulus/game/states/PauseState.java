@@ -23,7 +23,6 @@ public class PauseState extends GameState {
         this.play = gsm.getPlayState();
         imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
 
-
         btnResume = new Button("SAVE", 32, 24, imgButton, 200, 75, new Vector2f(0, -50), true);
         btnExit = new Button("EXIT", 32, 24, imgButton, 200, 75, new Vector2f(0, 150), true);
         btnBack = new Button("BACK", 32, 24, imgButton, 200, 75, new Vector2f(0, 50), true);

@@ -48,7 +48,7 @@ public class TileMapNorm extends TileMap {
                     if(blocks[i + (j * height)] != null)
                     blocks[i + (j * height)].render(g);
                 }catch(ArrayIndexOutOfBoundsException ae){
-                    //System.out.println(ae);
+                    System.out.println(ae);
                 }
             }
         }

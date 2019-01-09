@@ -1,6 +1,5 @@
 package com.zerulus.game.entity;
 
-
 import com.zerulus.game.GamePanel;
 import com.zerulus.game.graphics.Sprite;
 import com.zerulus.game.items.Bag;
@@ -16,11 +15,9 @@ import java.awt.*;
 public class Player extends Entity {
 
     private Camera cam;
-    
     private Bag bag;
     private boolean drawBag=false ;
     private Inventory inventory;
-
 
     public Player(Camera cam, Sprite sprite, Vector2f orgin, int size) {
         super(sprite, orgin, size);
@@ -117,14 +114,12 @@ public class Player extends Entity {
         if(!fallen) {
             move();
             if(!tc.collisionTile(dx, 0)) {
-                //PlayState.map.x += dx;
                 pos.x += dx;
                 xCol = false;
             } else {
                 xCol = true;
             }
             if(!tc.collisionTile(0, dy)) {
-                //PlayState.map.y += dy;
                 pos.y += dy;
                 yCol = false;
             } else {
@@ -150,25 +145,19 @@ public class Player extends Entity {
     
     public void setInventory(Inventory inventory)
     {
-        //bag.setInventory(inventory);
         this.inventory = inventory;
     }
 
     public void setInventory(String item)
     {
-        //bag.setInventory(item);
         inventory.add(item);
         bag=new Bag(inventory);
-        //bag.setInventory(inventory);
-
-        //this.inventory = inventory;
     }
     
     public void addItem(String item)
     {
         inventory.add(item);
         bag = new Bag(inventory);
-        //bag.setInventory(item);
     }
     
     public void removeItem(String item)
@@ -178,26 +167,11 @@ public class Player extends Entity {
 
     @Override
     public void render(Graphics2D g) {
-        /*g.setColor(Color.green);
-        g.drawRect((int) (pos.getWorldVar().x + bounds.getXOffset()), (int) (pos.getWorldVar().y + bounds.getYOffset()), (int) bounds.getWidth(), (int) bounds.getHeight());*/
-    	
-        /*if(attack) {
-            g.setColor(Color.red);
-            g.drawRect((int) (hitBounds.getPos().getWorldVar().x + hitBounds.getXOffset()), (int) (hitBounds.getPos().getWorldVar().y + hitBounds.getYOffset()), (int) hitBounds.getWidth(), (int) hitBounds.getHeight());
-        }*/
-        //System.out.println(size_w);
-        //System.out.println(size_h);
         g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size_w, size_h, null);
         
         if(drawBag){
             bag.render(g);
         }
-        
-        /*g.setColor(Color.green);
-        g.drawRect((int) (pos.getWorldVar().x + bounds.getXOffset()), (int) (pos.getWorldVar().y + bounds.getYOffset()), (int) bounds.getWidth(), (int) bounds.getHeight());
-        if(pos.getWorldVar().x < 0) {
-        	
-        }*/
     }
 
     public void input(MouseHandler mouse, KeyHandler key) {
@@ -264,6 +238,5 @@ public class Player extends Entity {
     }
 
     public void click(int x, int y) {
-        //bag.click(x,y);
     }
 }

@@ -1,11 +1,9 @@
 package com.zerulus.game.util;
 
-
 public class Vector2f {
 
     public float x;
     public float y;
-
     public static float worldX;
     public static float worldY;
 

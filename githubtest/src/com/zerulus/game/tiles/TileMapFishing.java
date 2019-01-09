@@ -38,31 +38,22 @@ public class TileMapFishing extends TileMap {
                 	temp = temp - 1728;
                     blocks[i] = new HoleBlock(sprite[1].getSprite((int) ((temp - 1) % tileColumns[1]), (int) ((temp - 1) / tileColumns[1])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                 }
-                /*else if (temp >= 1729 && temp < 2753) {
-                    temp = temp - 1728;
-                    blocks[i] = new HoleBlock(sprite[1].getSprite((int) ((temp - 1) % tileColumns[1]), (int) ((temp - 1) / tileColumns[1])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                } else if (temp >= 2753) {
-                    temp = temp - 2752;
-                    blocks[i] = new HoleBlock(sprite[2].getSprite((int) ((temp - 1) % tileColumns[2]), (int) ((temp - 1) / tileColumns[2])), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                }*/
             }
-
         }
-
     }
 
 
     public void render(Graphics2D g, AABB cam) {
-
         int x = (int) ((cam.getPos().x) / tileWidth);
         int y = (int) ((cam.getPos().y) / tileHeight);
+        
         for(int i = x; i < x + (cam.getWidth() / tileWidth); i++) {
             for(int j = y; j < y + (cam.getHeight() / tileHeight); j++) {
                 try{
                     if(blocks[i + (j * height)] != null)
                     blocks[i + (j * height)].render(g);
                 }catch(Exception e){
-                    //System.out.println(e);
+                    System.out.println(e);
                 }
             }
         }

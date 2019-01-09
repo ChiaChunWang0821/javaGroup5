@@ -34,7 +34,7 @@ public class Sea extends Entity {
     }
 
     @Override
-    public void render(Graphics2D g) //畫出菜!
+    public void render(Graphics2D g)
     {
         if(cam.getBounds().collides(this.bounds)) {
             g.setColor(Color.green);
@@ -56,7 +56,6 @@ public class Sea extends Entity {
     }
 
     public boolean clickInside(int posx, int posy){
-        // pos是視窗座標
         if(posx > (int)pos.getWorldVar().x  && posx < (int)pos.getWorldVar().x + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y && posy < (int)pos.getWorldVar().y + (int)bounds.getHeight())
         {
         	fishing = new Fishing(player);
@@ -76,7 +75,6 @@ public class Sea extends Entity {
         		fishSprite = new Sprite("item/" + fishing.getItem() + ".png" ,(int) bounds.getWidth(), (int) bounds.getHeight());
                 backgroundWating = new BackgroundWating(5000, fish, player);
                 backgroundWating.execute();
-
         	}
         	else if(collect == 1){
         		player.addItem(fish);

@@ -24,18 +24,8 @@ public class ShopMenu {
     private BufferedImage cucumber;
     private BufferedImage eggplant;
 
-    private Button buy1;
-    private Button buy2;
-    private Button buy3;
-    private Button buy4;
-    private Button buy5;
-    private Button buy6;
-
     private int iHeight = 450;
     private int iWidth = 450;
-
-    private Enemy_man boy;
-    private Camera cam;
 
     private Sprite vege;
     private Sprite vege1;
@@ -50,34 +40,9 @@ public class ShopMenu {
     public ShopMenu(BufferedImage[] spriteArray)
     {
         board = GameStateManager.shopMenu.getSprite(0,0,550,450);
-        //imgButton = GameStateManager.shopButton.getSprite(0, 0, 190, 48);
         imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
         this.person = spriteArray;
 
-        /*buy1 = new Button("BUY", 32, 24, imgButton, 100, 40, new Vector2f(230, -140), true);
-        buy2 = new Button("BUY", 32, 24, imgButton, 100, 40, new Vector2f(230, -85), true);
-        buy3 = new Button("BUY", 32, 24, imgButton, 100, 40, new Vector2f(230, -30), true);
-        buy4 = new Button("BUY", 32, 24, imgButton, 100, 40, new Vector2f(230, 25), true);
-        buy5 = new Button("BUY", 32, 24, imgButton, 100, 40, new Vector2f(230, 80), true);
-        buy6 = new Button("BUY", 32, 24, imgButton, 100, 40, new Vector2f(230, 135), true);*/
-        /*buy7 = new Button("BUY", 32, 24, imgButton, 100, 40, new Vector2f(230, 160), true);
-        buy8 = new Button("BUY", 32, 24, imgButton, 100, 40, new Vector2f(230, 210), true);*/
-        /*buy1.addEvent(e -> {
-        });
-        buy2.addEvent(e -> {
-        });
-        buy3.addEvent(e -> {
-        });
-        buy4.addEvent(e -> {
-        });
-        buy5.addEvent(e -> {
-        });
-        buy6.addEvent(e -> {
-        });*/
-       /* buy7.addEvent(e -> {
-        });
-        buy8.addEvent(e -> {
-        });*/
         vege = new Sprite("item/beet.png", 64, 64);
         beet = vege.getSprite(0,0,64,64);
         vege1 = new Sprite("item/broccoli.png", 64, 64);
@@ -94,22 +59,13 @@ public class ShopMenu {
         buyButton = new Sprite("ui/green_button.png", 64,64);
         buyBtn = buyButton.getSprite(0,0,190,49);
     }
+    
     public void update(double time) {
-        /*buy1.update();
-        buy2.update();
-        buy3.update();
-        buy4.update();
-        buy5.update();
-        buy6.update();*/
+        
     }
 
     public void input(MouseHandler mouse, KeyHandler key) {
-        /*buy1.input(mouse, key);
-        buy2.input(mouse, key);
-        buy3.input(mouse, key);
-        buy4.input(mouse, key);
-        buy5.input(mouse, key);
-        buy6.input(mouse, key);*/
+       
     }
 
     public int clickInside(int x, int y){
@@ -162,15 +118,6 @@ public class ShopMenu {
         Sprite.drawArray(g, "George's shop", new Vector2f(60+500, 130), 32, 24);
         Font myFont = new Font ("微軟正黑體", 1, 32);
         g.setFont (myFont);
-        //g.drawString("Hello",0,200);
-        /*buy1.render(g);
-        buy2.render(g);
-        buy3.render(g);
-        buy4.render(g);
-        buy5.render(g);
-        buy6.render(g);*/
-       /* buy7.render(g);
-        buy8.render(g);*/
         g.drawImage(beet, (int) 720, (int) 190, 50, 50, null);
         g.drawImage(broccoli, (int) 720, (int) 245, 50, 50, null);
         g.drawImage(cabbage, (int) 720, (int) 300, 50, 50, null);
@@ -184,5 +131,4 @@ public class ShopMenu {
             g.drawImage(buyBtn, (int) 810, (int) 210+i*55, 100, 30, null);
         }
     }
-
 }

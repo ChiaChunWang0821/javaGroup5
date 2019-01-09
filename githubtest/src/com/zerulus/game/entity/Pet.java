@@ -22,8 +22,6 @@ public class Pet extends Entity {
     private Player player;
     private int feedCount;
 
-
-
     public Pet(String name,  Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount, Player player) {
         super(sprite, orgin, size,1);
 
@@ -41,8 +39,6 @@ public class Pet extends Entity {
         bounds.setYOffset(size/4);
 
         sense = new AABB(new Vector2f(orgin.x + size / 2 - r / 2, orgin.y + size / 2 - r / 2), r);
-
-
     }
 
     public void move(Player player) {
@@ -129,7 +125,6 @@ public class Pet extends Entity {
     @Override
     public void render(Graphics2D g) {
         if(cam.getBounds().collides(this.bounds)) {
-
             g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
         }
 
@@ -137,12 +132,10 @@ public class Pet extends Entity {
             animalsBehavior.render(g, name, feedCount);
         }
         if(feedCount > 5) {
-            // add item
             player.setInventory(item);
             feedCount = 0;
         }
     }
-
 
     public void input(MouseHandler mouse, KeyHandler key) {
     }

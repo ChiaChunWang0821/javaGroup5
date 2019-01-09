@@ -57,14 +57,7 @@ public class Human extends Entity {
 
     @Override
     public void render(Graphics2D g) {
-        if(cam.getBounds().collides(this.bounds)) {
-            /*g.setColor(Color.green);
-            g.drawRect((int) (pos.getWorldVar().x + bounds.getXOffset()), (int) (pos.getWorldVar().y + bounds.getYOffset()),
-                    (int) bounds.getWidth(), (int) bounds.getHeight());
-
-            g.setColor(Color.blue);
-            g.drawOval((int) (sense.getPos().getWorldVar().x), (int) (sense.getPos().getWorldVar().y), r, r);*/
-        	
+        if(cam.getBounds().collides(this.bounds)) {        	
             g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
         }
         if(draw==true){
@@ -125,12 +118,9 @@ public class Human extends Entity {
             }
         }
         if(draw==true && drawBag==true && (i=clickBag(x,y))!=9){
-            //System.out.println(i);
             String s = inv.getItems()[i];
             checkLike(s);
             player.removeItem(s);
-            //this.inv = player.getInventory();
-            //this.bag = new Bag(inv);
         }
     }
 
@@ -156,7 +146,6 @@ public class Human extends Entity {
             talkframe.setContext("好 謝謝");
         }
         talkTime=-1;
-        //draw=false;
         this.inv = player.getInventory();
         this.bag=new Bag(inv);
     }

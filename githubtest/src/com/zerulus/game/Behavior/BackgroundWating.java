@@ -27,13 +27,11 @@ public class BackgroundWating extends SwingWorker {
         try{
             test = 0;
             thread.sleep(time);
-
         }catch (InterruptedException exception)
         {
             exception.printStackTrace();
             Thread.currentThread().interrupt();
         }
-
         return null;
     }
 

@@ -6,7 +6,6 @@ import com.zerulus.game.util.AABB;
 import com.zerulus.game.entity.Entity;
 
 import java.awt.Graphics;
-import java.awt.Color;
 
 public class Camera {
 
@@ -50,7 +49,6 @@ public class Camera {
                             .getWorldVarX(GamePanel.width / 2 - 64)) {
                 PlayState.map.x += dx;
                 collisionCam.getPos().x += dx;
-                //bounds.getPos().x += dx;
             }
         }
         if (!e.yCol) {
@@ -60,7 +58,6 @@ public class Camera {
                             .getWorldVarY(GamePanel.height / 2 - 64)) {
                 PlayState.map.y += dy;
                 collisionCam.getPos().y += dy;
-               //bounds.getPos().y += dy;
             }
         }
     }
@@ -127,7 +124,6 @@ public class Camera {
     }
 
     public void input(MouseHandler mouse, KeyHandler key) {
-
         if (e == null) {
             if (key.up.down) {
                 up = true;
@@ -149,7 +145,8 @@ public class Camera {
             } else {
                 right = false;
             }
-        } else {
+        } 
+        else {
             if (!e.yCol) {
                 if (PlayState.map.y + GamePanel.height / 2 - e.getSize() / 2 + dy > e.getBounds().getPos().y + e.getDy()
                         + 2) {
@@ -185,14 +182,5 @@ public class Camera {
     }
 
     public void render(Graphics g) {
-        /* g.setColor(Color.blue);
-        g.drawRect((int) collisionCam.getPos().getWorldVar().x, (int) collisionCam.getPos().getWorldVar().y, (int) collisionCam.getWidth(),
-                (int) collisionCam.getHeight()); */
-
-        /*
-         * g.setColor(Color.magenta); g.drawLine(GamePanel.width / 2, 0, GamePanel.width
-         * / 2, GamePanel.height); g.drawLine(0, GamePanel.height / 2, GamePanel.width,
-         * GamePanel.height / 2);
-         */
     }
 }

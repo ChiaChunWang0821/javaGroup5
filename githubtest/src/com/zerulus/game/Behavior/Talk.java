@@ -10,14 +10,13 @@ import java.awt.image.BufferedImage;
 public class Talk {
     private String context;
     private String name;
-    private String tmp[];
-    private BufferedImage img;
     private BufferedImage frame;
 
     public Talk(String name){
         this.name = name;
         frame = GameStateManager.talk.getSprite(0,0,1800,476);
     }
+    
     public void setContext(String s){
         this.context = s;
     }
@@ -30,6 +29,4 @@ public class Talk {
         g.setFont (myFont);
         g.drawString(context,250,550);
     }
-
-
 }

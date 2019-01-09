@@ -1,6 +1,5 @@
 package com.zerulus.game.util;
 
-
 import com.zerulus.game.GamePanel;
 
 import java.awt.event.MouseEvent;

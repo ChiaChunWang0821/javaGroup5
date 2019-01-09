@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class Inventory {
     private Map<String, Integer> items;
-    private int itemCount = 0;
 
     public Inventory(String... initialItems) {
         items = new HashMap<String, Integer>();
@@ -15,7 +14,6 @@ public class Inventory {
         {
             add(item);
         }
-
     }
 
     public synchronized int getQuantity(String item) {
@@ -57,21 +55,8 @@ public class Inventory {
         return items.size();
     }
 
-    /*public void printItems()
-    {
-
-        for(Map.Entry<Item, Integer> entry: items.entrySet())
-        {
-           System.out.println(entry.getKey().getItem() + "," + entry.getValue());
-        }
-    }*/
-
     public String[] getItems()
     {
-        /*for(Map.Entry<Item, Integer> entry: items.entrySet())
-        {
-            return entry.getKey();
-        }*/
         List<String> list = new ArrayList<String>();
         for(String key: items.keySet())
         {
@@ -81,20 +66,4 @@ public class Inventory {
         list.toArray(simpleArray);
         return simpleArray;
     }
-
-
-   /* public static void main (String[] args) {
-        Item item1 = new Item("apple");
-        Item item2 = new Item("apple2");
-        Inventory invent = new Inventory();
-        invent.add(item1, 1);
-        invent.add(item2);
-        String[] a = new String[invent.getSize()];
-        a = invent.getItems();
-        for(String s : a)
-        {
-            System.out.println(s);
-        }
-    }*/
-
 }

@@ -19,11 +19,6 @@ public class Bag {
     private int iWidth=320;
     private Inventory inventory;
 
-    private int index = 0;
-    private int index2 = 0;
-    private int x = 200;
-    private int y = 0;
-
     private boolean draw;
 
     public Bag(Inventory inventory)
@@ -38,18 +33,6 @@ public class Bag {
         }
     }
 
-    /*public void loadItem(){
-
-        for(int i=0;i<inventory.getSize();i++){
-            System.out.println(bagArray[i]);
-        }
-        for(int i = 0; i <inventory.getSize(); i++)
-        {
-            itemSprites.add(new Sprite("item/"+ bagArray[i] +".png",32 ,32)) ;
-            bagItems.add(itemSprites.get(i).getSprite(0,0,64,64));
-        }
-    }*/
-
     public void AddItem(){
         int i = inventory.getSize()-1;
         {
@@ -62,68 +45,9 @@ public class Bag {
 
     }
 
-    /*public void setInventory(Inventory inv){
-        this.inventory = inv;
-        loadItem();
-    }
-
-    public void setInventory(String item){
-        inventory.add(item);
-        bagArray=inventory.getItems();
-        AddItem();
-    }*/
-
     public void input(MouseHandler mouse, KeyHandler key) {
 
     }
-
-    /*public int clickInside(int x, int y){
-        if(y >130 && y < 200){
-            if(x >840 && x <910){
-                return 0;
-            }
-            else if(x>930 && x<1000){
-                return 1;
-            }
-            else if(x>1020 && x<1090){
-                return 2;
-            }
-        }
-        else if(y > 230 && y<300){
-            if(x >840 && x <910){
-                return 3;
-            }
-            else if(x>930 && x<1000){
-                return 4;
-            }
-            else if(x>1020 && x<1090){
-                return 5;
-            }
-        }
-        else if(y>330 && y<400){
-            if(x >840 && x <910){
-                return 6;
-            }
-            else if(x>930 && x<1000){
-                return 7;
-            }
-            else if(x>1020 && x<1090){
-                return 8;
-            }
-        }
-        return  9;
-    }*/
-
-    /*public void  click(int x, int y){
-        int choose;
-        choose = clickInside(x,y);
-        if(choose!=9 && draw==true){
-            inventory.remove(bagArray[choose]);
-            bagArray=inventory.getItems();
-            //loadItem();
-        }
-        //loadItem();
-    }*/
 
     public Inventory getInventory(){
         return inventory;

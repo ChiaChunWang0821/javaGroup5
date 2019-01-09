@@ -41,13 +41,10 @@ public class GameStateManager {
         Sprite.currentFont = font;
 
         ui = new Sprite("ui/ui.png", 64, 64);
-
         inform = new Sprite("ui/inform.png",64,64);
         box = new Sprite("ui/slot.png", 64, 64);
         shopMenu = new Sprite("ui/board.jpg", 64, 64);
-        // shopButton = new Sprite("ui/greenSheet.png", 64, 64);
         talk = new Sprite("ui/talk1.png",64,64);
-
         states[FIRST] = new Firststate(this);
 
     }
@@ -127,5 +124,4 @@ public class GameStateManager {
         }
         return null;
     }
-
 }

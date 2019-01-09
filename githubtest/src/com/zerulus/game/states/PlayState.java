@@ -22,12 +22,11 @@ public class PlayState extends GameState {
 
 	private ArrayList<Farm> farm = new ArrayList<>(9);
 	private ArrayList<Sea> seas = new ArrayList<>(9);
-	// private Sea sea;
 
 	private ArrayList<Animals> animals = new ArrayList<>(3);
 	private ArrayList<Human> human  = new ArrayList<>(5);
 	private ArrayList<Pet> pets= new ArrayList<>(3);
-	// private ShopNPC george;
+
 	String music = "res/background/music02.wav";
 	String musicclick = "res/background/click.wav";
 	public static Vector2f map;
@@ -36,7 +35,6 @@ public class PlayState extends GameState {
 
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
-		// System.out.println(musicStop);
 
 		try {
 			File file = new File(music);
@@ -79,10 +77,6 @@ public class PlayState extends GameState {
 		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 2848), 316, 7, player, 0));
 		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 3006), 316, 8, player, 0));
 		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 3164), 316, 9, player, 0));
-		
-		// sea = new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3164), 316, 10);
-
-		//george = new ShopNPC(cam, new Sprite("entity/george.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 300, (GamePanel.height / 2) + 800), 64);
 
 		animals.add(new Animals("Cow", new String("milk"), cam, new Sprite("entity/cow_walk.png",128, 128), new Vector2f(0+(GamePanel.width / 2)+200 , (GamePanel.height / 2)+200), 256, 1, player));
 		animals.add(new Animals("Llama", new String("wool"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 128, 1, player));
@@ -116,6 +110,7 @@ public class PlayState extends GameState {
 				break;
 			}
 		}
+		
 		if (musicStop){
 			clip.stop();
 		}
@@ -150,18 +145,15 @@ public class PlayState extends GameState {
 			for(int i = 0; i < 9; i++) {
 				seas.get(i).click(x, y);
 			}
-			// sea.click(x, y);
 			for(int i=0;i<5;i++){
 				human.get(i).click(x,y);
 			}
 			for(int i = 0; i < 3; i++) {
 				animals.get(i).click(x, y);
 			}
-			//george.click(x,y);
 			player.click(x,y);
 		}
 		try {
-            //clip.stop();
             Clip clickclip;
             File file = new File(musicclick);
             AudioInputStream ais = AudioSystem.getAudioInputStream(file);
@@ -190,7 +182,6 @@ public class PlayState extends GameState {
 		for(int i = 0; i < 9; i++) {
 			seas.get(i).render(g);
 		}
-		// sea.render(g);
 		for(int i=0;i<5;i++){
 			human.get(i).render(g);
 		}
@@ -198,7 +189,6 @@ public class PlayState extends GameState {
 			animals.get(i).render(g);
 		}
 		pets.get(0).render(g);
-		//george.render(g);
 		cam.render(g);
 		player.render(g);
 	}
@@ -230,6 +220,7 @@ public class PlayState extends GameState {
 			}catch (Exception e){
 			}
 		}
+		
 		int tmpCount = Integer.parseInt(record.get(8));
 		Inventory tmpInv = new Inventory();
 		for(int i=0;i<tmpCount*2;i+=2){

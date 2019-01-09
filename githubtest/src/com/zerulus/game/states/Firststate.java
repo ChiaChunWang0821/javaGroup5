@@ -19,10 +19,11 @@ public class Firststate extends GameState{
     private BufferedImage newstart;
     private boolean loading;
     private static boolean musicStopFirst = true;
-    // private int posX=10;
+
     String music = "res/background/music01.wav";
     String musicclick = "res/background/click_first.wav";
     Clip clip;
+    
     public Firststate(GameStateManager gsm){
         super(gsm);
         try{
@@ -33,6 +34,7 @@ public class Firststate extends GameState{
         }catch(Exception e){
             System.out.println(e);
         }
+        
         if (musicStopFirst){
             try {
                 File file = new File(music);
@@ -47,7 +49,6 @@ public class Firststate extends GameState{
                 System.out.println(e);
             }
         }
-
     }
 
     @Override

@@ -138,12 +138,7 @@ public class Animals extends Entity {
     @Override
     public void render(Graphics2D g) {
         if(cam.getBounds().collides(this.bounds)) {
-            /*g.setColor(Color.green);
-            g.drawRect((int) (pos.getWorldVar().x + bounds.getXOffset()), (int) (pos.getWorldVar().y + bounds.getYOffset()),
-                    (int) bounds.getWidth(), (int) bounds.getHeight());
-
-            g.setColor(Color.blue);
-            g.drawOval((int) (sense.getPos().getWorldVar().x), (int) (sense.getPos().getWorldVar().y), r, r);*/
+        	g.setColor(Color.blue);
         	
             g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
         }
@@ -152,7 +147,6 @@ public class Animals extends Entity {
         	animalsBehavior.render(g, name, feedCount);
         }
         if(feedCount > 5) {
-        	// add item
             player.setInventory(item);
         	feedCount = 0;
         }

@@ -78,18 +78,7 @@ public class Shop extends JFrame {
     public Shop()
     {
         super("shop");
-        /*JLabel background = new JLabel(new ImageIcon("item/woodbackground.jpg"));
-        this.add(background);
-        this.pack();
-        this.setResizable(false);
-        this.setVisible(true);
-        try
-        {
-            BufferedImage image = ImageIO.read(getClass().getResource("item/woodbackground.jpg"));
-            background.setIcon(new ImageIcon(image));
-        } catch (IOException ioe) {
-            System.out.println(ioe);
-        }*/
+        
         p = new JPanel(new GridLayout(8,2));
         JScrollPane scrollP = new JScrollPane(p);
         scrollP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -161,9 +150,6 @@ public class Shop extends JFrame {
         label15.setToolTipText("乳酪");
         label16.setIcon(rice);
         label16.setToolTipText("白飯");
-
-
-
 
         foodPanel1.add(label1);
         textField1 = new JTextField(5);
@@ -308,9 +294,8 @@ public class Shop extends JFrame {
         button16.addActionListener(handler);
         foodPanel16.add(button16);
         p.add(foodPanel16);
-
-
     }
+    
     private class ButtonHandler implements ActionListener
     {
         @Override
@@ -380,7 +365,6 @@ public class Shop extends JFrame {
             {
                 System.out.println(textField16.getText());
             }
-
         }
     }
 

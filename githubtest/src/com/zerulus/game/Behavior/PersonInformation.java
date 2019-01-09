@@ -17,7 +17,6 @@ public class PersonInformation{
     BufferedImage imgInform;
     BufferedImage[] person;
     private BufferedImage imgButton;
-    private Button talkButton;
     private Button giveButton;
     private int iHeight=320;
     private int iWidth=320;
@@ -30,7 +29,6 @@ public class PersonInformation{
         this.person = spriteArray;
         load_heart(heart);
         imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
-        // talkButton = new com.zerulus.game.ui.Button("Talk", 24, 12, imgButton, 100, 32, new Vector2f(30, 200), false);
         giveButton = new com.zerulus.game.ui.Button("Give", 24, 12, imgButton, 100, 32, new Vector2f(30, 220), false);
     }
 
@@ -54,6 +52,5 @@ public class PersonInformation{
             g.drawImage(img,(int)30+i*48,(int)160,32,32,null);
         }
         giveButton.render(g);
-        //talkButton.render(g);
     }
 }
