@@ -1,8 +1,10 @@
 package com.zerulus.game.states;
 
 import com.zerulus.game.GamePanel;
+import com.zerulus.game.ReadFile.TxtReader;
 import com.zerulus.game.entity.*;
 import com.zerulus.game.graphics.Sprite;
+import com.zerulus.game.items.Inventory;
 import com.zerulus.game.tiles.TileManager;
 import com.zerulus.game.util.*;
 
@@ -46,9 +48,6 @@ public class PlayState extends GameState {
 			e.printStackTrace();
 			System.out.println(e);
 		}
-
-
-
 
 		map = new Vector2f();
 		Vector2f.setWorldVar(map.x, map.y);
@@ -100,19 +99,14 @@ public class PlayState extends GameState {
 		Vector2f.setWorldVar(map.x, map.y);
 		if(!gsm.getState(GameStateManager.PAUSE)) {
 			player.update(enemy, time);
-			/*for(int i=0;i<5;i++){
-				human.get(i).update(player);
-			}*/
 			for(int i = 0; i < 3; i++) {
 				animals.get(i).update(player);
 			}
-			//george.update(player);
 			cam.update();
 		}
 		
 		for(int i=0;i<5;i++){
 			if(human.get(i).getMarry()){
-				// gsm.pop(GameStateManager.PLAY);
 				gsm.add(GameStateManager.MARRY);
 				break;
 			}
@@ -187,5 +181,44 @@ public class PlayState extends GameState {
 		//george.render(g);
 		cam.render(g);
 		player.render(g);
+	}
+	
+	public ArrayList<Human> getHuman() {
+		return human;
+	}
+
+	public ArrayList<Animals> getAnimals() {
+		return animals;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setInform() {
+		TxtReader reader = new TxtReader();
+		ArrayList<String> record = reader.InputRecord("save.txt");
+		for(int i=0;i<5;i++){
+			try{
+				human.get(i).setHeart(record.get(i));
+			}catch(Exception e){
+			}
+		}
+		for(int i=0;i<3;i++){
+			try{
+				animals.get(i).setFeedCount(record.get(i+5));
+			}catch (Exception e){
+			}
+		}
+		int tmpCount = Integer.parseInt(record.get(8));
+		Inventory tmpInv = new Inventory();
+		for(int i=0;i<tmpCount*2;i+=2){
+			try {
+				System.out.println(record.get(i+9)+record.get(i+10));
+				tmpInv.add(record.get(i+9), Integer.parseInt(record.get(i+10)));
+			}catch (Exception e){
+			}
+		}
+		player.setInventory(tmpInv);
 	}
 }

@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 public class Talk {
     private String context;
     private String name;
+    private String tmp[];
     private BufferedImage img;
     private BufferedImage frame;
 

@@ -39,8 +39,6 @@ public class Animals extends Entity {
         bounds.setYOffset(size/4);
 
         sense = new AABB(new Vector2f(orgin.x + size / 2 - r / 2, orgin.y + size / 2 - r / 2), r);
-        
-        
     }
 
     public void move(Player player) {
@@ -162,5 +160,13 @@ public class Animals extends Entity {
             	setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
             }
         }
+    }
+    
+    public int getFeedCount() {
+        return feedCount;
+    }
+
+    public void setFeedCount(String s) {
+        feedCount = Integer.parseInt(s);
     }
 }

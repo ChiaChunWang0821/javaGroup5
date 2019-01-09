@@ -1,5 +1,6 @@
 package com.zerulus.game.states;
 
+import com.zerulus.game.ReadFile.TxtWriter;
 import com.zerulus.game.ui.Button;
 import com.zerulus.game.util.KeyHandler;
 import com.zerulus.game.util.MouseHandler;
@@ -7,6 +8,7 @@ import com.zerulus.game.util.Vector2f;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class PauseState extends GameState {
     
@@ -14,17 +16,26 @@ public class PauseState extends GameState {
     private Button btnResume;
     private Button btnExit;
     private Button btnBack;
+    private PlayState play;
+
     public PauseState(GameStateManager gsm) {
         super(gsm);
+        this.play = gsm.getPlayState();
         imgButton = GameStateManager.ui.getSprite(0, 0, 128, 64);
 
 
-        btnResume = new Button("RESUME", 32, 24, imgButton, 200, 75, new Vector2f(0, -50), true);
+        btnResume = new Button("SAVE", 32, 24, imgButton, 200, 75, new Vector2f(0, -50), true);
         btnExit = new Button("EXIT", 32, 24, imgButton, 200, 75, new Vector2f(0, 150), true);
         btnBack = new Button("BACK", 32, 24, imgButton, 200, 75, new Vector2f(0, 50), true);
 
         btnResume.addEvent(e -> {
             gsm.pop(GameStateManager.PAUSE);
+            try{
+                new TxtWriter(play);
+            }catch(IOException ioe){
+                System.out.println(ioe);
+            }
+
         });
 
         btnExit.addEvent(e -> {

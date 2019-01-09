@@ -19,7 +19,7 @@ public class Firststate extends GameState{
     private BufferedImage newstart;
     private boolean loading;
     private static boolean musicStopFirst = true;
-    private int posX=10;
+    // private int posX=10;
     String music = "res/background/music01.wav";
     Clip clip;
     public Firststate(GameStateManager gsm){
@@ -61,9 +61,7 @@ public class Firststate extends GameState{
 
     @Override
     public void click(int x, int y) {
-        System.out.println(x);
-        System.out.println(y);
-        if(x <= 100+350 & y <= 500 +120 & x > 100 & y >500){
+        if(x <= 100 + 350 & y <= 500 + 120 & x > 100 & y > 500){
             loading = true;
             PlayState.musicStop = false;
             musicStopFirst = true;
@@ -71,11 +69,8 @@ public class Firststate extends GameState{
             gsm.add(GameStateManager.PLAY);
             gsm.pop(GameStateManager.FIRST);
         }
-        if(x <= 500+350 & y <= 500 +120 & x > 500 & y >500){
-            System.exit(0);
-        }
-        if(x <= 900+350 & y <= 500 +120 & x > 900 & y >500){
-            loading = true;
+        if(x <= 500 + 350 & y <= 500 + 120 & x > 500 & y > 500){
+        	loading = true;
             PlayState.musicStop = false;
             musicStopFirst = true;
             clip.stop();
@@ -83,21 +78,30 @@ public class Firststate extends GameState{
             gsm.add(GameStateManager.PLAY);
             gsm.pop(GameStateManager.FIRST);
         }
+        if(x <= 900 + 350 & y <= 500 + 120 & x > 900 & y > 500){
+            loading = true;
+            PlayState.musicStop = false;
+            musicStopFirst = true;
+            clip.stop();
+            gsm.add(GameStateManager.PLAY);
+            gsm.pop(GameStateManager.FIRST);
+            gsm.getPlayState().setInform();
+        }
     }
 
     @Override
     public void render(Graphics2D g) {
-        g.drawImage(background,0,0, GamePanel.width,GamePanel.height,null);
-        g.drawImage(start,100,500,350,120,null);
-        g.drawImage(exit,500,500,350,120,null);
-        g.drawImage(newstart,900,500,350,120,null);
-        Sprite.drawArray(g, "First", new Vector2f(158, 80), 64, 48);
-        Sprite.drawArray(g, "Start", new Vector2f(200, 530), 60, 48);
-        Sprite.drawArray(g, "Exit", new Vector2f(620, 530), 60, 48);
-        Sprite.drawArray(g, "New", new Vector2f(1040, 530), 60, 48);
-        if (loading == true){
-            Sprite.drawArray(g, "Loading..", new Vector2f(470, 330), 60, 48);
-        }
+    	 g.drawImage(background,0,0, GamePanel.width,GamePanel.height,null);
+         g.drawImage(start,100,500,350,120,null);
+         g.drawImage(exit,500,500,350,120,null);
+         g.drawImage(newstart,900,500,350,120,null);
+         Sprite.drawArray(g, "FLIPPED", new Vector2f(158, 80), 64, 68);
+         Sprite.drawArray(g, "Start", new Vector2f(200, 530), 60, 48);
+         Sprite.drawArray(g, "New", new Vector2f(620, 530), 60, 50);
+         Sprite.drawArray(g, "Read", new Vector2f(1040, 530), 60, 48);
+         if (loading == true){
+             Sprite.drawArray(g, "Loading..", new Vector2f(470, 330), 60, 48);
+         }
     }
 }
 

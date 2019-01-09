@@ -13,8 +13,25 @@ public class TxtReader {
 
     public ArrayList<String> InputTalk(String filename){
         try{
-            File f = new File("src/com/zerulus/game/ReadFile/"+filename);
+            File f = new File("res/txt/"+filename);
             InputStreamReader read = new InputStreamReader(new FileInputStream(f),"big5");
+            BufferedReader reader= new BufferedReader(read);
+            String line;
+            while((line=reader.readLine())!=null){
+                arr.add(line);
+            }
+
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println("File cannot read....");
+        }
+        return arr;
+    }
+
+    public ArrayList<String> InputRecord(String filename){
+        try{
+            File f = new File("res/txt/"+filename);
+            InputStreamReader read = new InputStreamReader(new FileInputStream(f),"utf-8");
             BufferedReader reader= new BufferedReader(read);
             String line;
             while((line=reader.readLine())!=null){

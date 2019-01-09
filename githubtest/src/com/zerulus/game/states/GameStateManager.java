@@ -121,4 +121,11 @@ public class GameStateManager {
         }
     }
 
+    public PlayState getPlayState(){
+        if(states[PLAY]!=null){
+            return (PlayState)states[PLAY];
+        }
+        return null;
+    }
+
 }
