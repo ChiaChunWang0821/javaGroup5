@@ -1,26 +1,31 @@
 package com.zerulus.game.entity;
 
+import com.zerulus.game.Behavior.BackgroundWating;
 import com.zerulus.game.Behavior.Fishing;
 import com.zerulus.game.graphics.Sprite;
-import com.zerulus.game.items.Inventory;
 import com.zerulus.game.util.Camera;
 import com.zerulus.game.util.Vector2f;
 
 import java.awt.*;
 
-public class Sea extends Entity{
+public class Sea extends Entity {
     private Camera cam;
-    private Inventory inv;
-    // private int number;
 
     private Player player;
     private Fishing fishing;
+    private Sprite fishSprite;
+    private BackgroundWating backgroundWating;
+    private String fish;
+    private int collect = 0;
+    private Sprite farmBlockSprite;
 
-    public Sea(Camera cam,Sprite sprite, Vector2f orgin, int size,int number, Player player) {
+    Thread thread = new Thread();
+
+    public Sea(Camera cam,Sprite sprite, Vector2f orgin, int size, int number, Player player, int collect) {
         super(sprite, orgin, size);
-        // this.number = number;
         this.cam = cam;
         this.player = player;
+        this.collect = collect;
 
         bounds.setWidth(size/2);
         bounds.setHeight(size/2);
@@ -29,26 +34,32 @@ public class Sea extends Entity{
     }
 
     @Override
-    public void render(Graphics2D g)
+    public void render(Graphics2D g) //畫出菜!
     {
-        //g.setColor(Color.green);
-        //g.drawRect((int) (pos.getWorldVar().x + bounds.getXOffset()), (int) (pos.getWorldVar().y + bounds.getYOffset()), (int) bounds.getWidth(), (int) bounds.getHeight());
         if(cam.getBounds().collides(this.bounds)) {
             g.setColor(Color.green);
             g.drawRect((int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), (int) bounds.getWidth(), (int) bounds.getHeight());
-            //g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), 50, 50, null);
-        }
 
+            if(fishSprite!=null)
+            {
+                if(backgroundWating.test==1) {
+                    g.drawImage(fishSprite.getSprite(0, 0, 64, 64), (int) pos.getWorldVar().x, (int) (pos.getWorldVar().y), (int) bounds.getWidth(), (int) bounds.getHeight(), null);
+                    collect = 1;
+                }
+            }
+            
+            if(collect == 2) {
+            	g.drawImage(farmBlockSprite.getSprite(0, 0, 64, 64), (int) pos.getWorldVar().x, (int) (pos.getWorldVar().y), (int) bounds.getWidth(), (int) bounds.getHeight(), null);
+            	collect = 0;
+            }
+        }
     }
 
     public boolean clickInside(int posx, int posy){
-        //pos是視窗座標
-        // System.out.println(posx);
-        // System.out.println(posy);
-
-        if(posx > (int)pos.getWorldVar().x && posx < (int)pos.getWorldVar().x + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y  && posy < (int)pos.getWorldVar().y  + (int)bounds.getHeight())
+        // pos是視窗座標
+        if(posx > (int)pos.getWorldVar().x  && posx < (int)pos.getWorldVar().x + (int)bounds.getWidth()  && posy > (int)pos.getWorldVar().y && posy < (int)pos.getWorldVar().y + (int)bounds.getHeight())
         {
-            fishing = new Fishing(player);
+        	fishing = new Fishing(player);
             return true;
         }
         return  false;
@@ -58,12 +69,20 @@ public class Sea extends Entity{
     {
         if(clickInside(x,y))
         {
-            System.out.println(fishing.getItem());
-            player.addItem(fishing.getItem());
-            /*if(number == 1)
-                System.out.println(number + "SEA YA");*/
+        	farmBlockSprite = new Sprite("background/seaBlock.png" ,(int) bounds.getWidth(), (int) bounds.getHeight());
+        	
+        	if(collect == 0) {
+        		fish = fishing.getItem();
+        		fishSprite = new Sprite("item/" + fishing.getItem() + ".png" ,(int) bounds.getWidth(), (int) bounds.getHeight());
+                backgroundWating = new BackgroundWating(5000, fish, player);
+                backgroundWating.execute();
 
-           // fishing.click();
+        	}
+        	else if(collect == 1){
+        		player.addItem(fish);
+        		collect = 2;
+        		backgroundWating.test = 0;
+        	}
         }
     }
 }

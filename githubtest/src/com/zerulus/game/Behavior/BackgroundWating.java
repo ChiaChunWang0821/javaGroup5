@@ -7,15 +7,16 @@ import javax.swing.*;
 public class BackgroundWating extends SwingWorker {
     private int time;
     private Thread thread = new Thread();
-    private String vegetable;
-    public int test;
+    private String item;
+    public int test = 0;
     private Player player;
-    public BackgroundWating(int time,String vegetable,Player player)
+    
+    public BackgroundWating(int time,String item,Player player)
     {
-        if(vegetable!=null)
+        if(item!=null)
         {
             this.time = time;
-            this.vegetable = vegetable;
+            this.item = item;
             this.player = player;
         }
     }
@@ -39,8 +40,5 @@ public class BackgroundWating extends SwingWorker {
     protected void done()
     {
         test = 1;
-        player.addItem(vegetable);
     }
-
-
 }

@@ -24,7 +24,7 @@ public class PlayState extends GameState {
 
 	private ArrayList<Animals> animals = new ArrayList<>(3);
 	private ArrayList<Human> human  = new ArrayList<>(5);
-	private ShopNPC george;
+	// private ShopNPC george;
 	String music = "res/background/music02.wav";
 	public static Vector2f map;
 	protected static boolean musicStop;
@@ -59,25 +59,25 @@ public class PlayState extends GameState {
 
         player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2)+500, 0 + (GamePanel.height / 2) + 1300), 128);
 
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,190)/*框框起始位置 世界座標*/,256 ,1, player));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,190)/*框框起始位置 世界座標*/,256 ,2, player));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,190)/*框框起始位置 世界座標*/,256 ,3, player));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,380)/*框框起始位置 世界座標*/,256 ,4, player));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,380)/*框框起始位置 世界座標*/,256 ,5, player));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,380)/*框框起始位置 世界座標*/,256 ,6, player));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,570)/*框框起始位置 世界座標*/,256 ,7, player));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,570)/*框框起始位置 世界座標*/,256 ,8, player));
-		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,570)/*框框起始位置 世界座標*/,256 ,9, player));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,190)/*框框起始位置 世界座標*/,256 ,1, player, 0));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,190)/*框框起始位置 世界座標*/,256 ,2, player, 0));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,190)/*框框起始位置 世界座標*/,256 ,3, player, 0));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,380)/*框框起始位置 世界座標*/,256 ,4, player, 0));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,380)/*框框起始位置 世界座標*/,256 ,5, player, 0));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,380)/*框框起始位置 世界座標*/,256 ,6, player, 0));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,570)/*框框起始位置 世界座標*/,256 ,7, player, 0));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,570)/*框框起始位置 世界座標*/,256 ,8, player, 0));
+		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(570,570)/*框框起始位置 世界座標*/,256 ,9, player, 0));
 
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 1900), 316, 1, player));
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2058), 316, 2, player));
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2216), 316, 3, player));
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2374), 316, 4, player));
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2532), 316, 5, player));
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2690), 316, 6, player));
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 2848), 316, 7, player));
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3006), 316, 8, player));
-		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3164), 316, 9, player));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 1900), 316, 1, player, 0));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 2058), 316, 2, player, 0));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 2216), 316, 3, player, 0));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 2374), 316, 4, player, 0));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 2532), 316, 5, player, 0));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 2690), 316, 6, player, 0));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 2848), 316, 7, player, 0));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 3006), 316, 8, player, 0));
+		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 3164), 316, 9, player, 0));
 		
 		// sea = new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(2850, 3164), 316, 10);
 

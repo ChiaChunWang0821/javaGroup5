@@ -48,8 +48,4 @@ public class Planting {
     		break;
     	}
     }
-    
-    /*public void click() {
-    	player.setInventory(item);
-    }*/
 }

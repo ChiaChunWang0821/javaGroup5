@@ -166,7 +166,6 @@ public class Player extends Entity {
     
     public void addItem(String item)
     {
-
         inventory.add(item);
         bag = new Bag(inventory);
         //bag.setInventory(item);
