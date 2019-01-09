@@ -61,57 +61,6 @@ public class Animals extends Entity {
         sense = new AABB(new Vector2f(orgin.x + size / 2 - r / 2, orgin.y + size / 2 - r / 2), r);
     }
 
-    public void move(Player player) {
-        if (sense.colCircleBox(player.getBounds())) {
-            if (pos.y > player.pos.y + 1) {
-                dy -= acc;
-                up = true;
-                down = false;
-                if (dy < -maxSpeed) {
-                    dy = -maxSpeed;
-                }
-            } else if (pos.y < player.pos.y - 1) {
-                dy += acc;
-                down = true;
-                up = false;
-                if (dy > maxSpeed) {
-                    dy = maxSpeed;
-                }
-            } else {
-                dy = 0;
-                up = false;
-                down = false;
-            }
-
-            if (pos.x > player.pos.x + 1) {
-                dx -= acc;
-                left = true;
-                right = false;
-                if (dx < -maxSpeed) {
-                    dx = -maxSpeed;
-                }
-            } else if (pos.x < player.pos.x - 1) {
-                dx += acc;
-                right = true;
-                left = false;
-                if (dx > maxSpeed) {
-                    dx = maxSpeed;
-                }
-            } else {
-                dx = 0;
-                right = false;
-                left = false;
-            }
-        } else {
-            up = false;
-            down = false;
-            left = false;
-            right = false;
-            dx = 0;
-            dy = 0;
-        }
-    }
-
     private void destroy() {
 
     }
@@ -119,7 +68,7 @@ public class Animals extends Entity {
     public void update(Player player) {
         if(cam.getBounds().collides(this.bounds)) {
             super.update();
-            move(player);
+            // move(player);
             if (!fallen) {
                 if (!tc.collisionTile(dx, 0)) {
                     sense.getPos().x += dx;
