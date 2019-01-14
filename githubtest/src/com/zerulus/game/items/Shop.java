@@ -367,12 +367,4 @@ public class Shop extends JFrame {
             }
         }
     }
-
-    public static void main(String[] args)
-    {
-        Shop shop = new Shop();
-        shop.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        shop.setSize(400,400);
-        shop.setVisible(true);
-    }
 }

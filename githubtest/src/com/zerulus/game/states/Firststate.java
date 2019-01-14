@@ -99,6 +99,7 @@ public class Firststate extends GameState{
             PlayState.musicStop = false;
             musicStopFirst = true;
             clip.stop();
+            gsm.pop(GameStateManager.PLAY);
             gsm.add(GameStateManager.PLAY);
             gsm.pop(GameStateManager.FIRST);
             gsm.getPlayState().setInform();

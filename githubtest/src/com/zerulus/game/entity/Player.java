@@ -24,12 +24,12 @@ public class Player extends Entity {
         this.cam = cam;
         acc = 2f;
         maxSpeed = 4f;
-        bounds.setWidth(size/2);
+        bounds.setWidth(size/4);
         bounds.setHeight(size);
         bounds.setXOffset(size/4);
         bounds.setYOffset(0);
         
-        inventory = new Inventory("beet","cabbage", "carrot", "carrot", "flour");
+        inventory = new Inventory("beet","cabbage", "carrot", "carrot");
         bag = new Bag(inventory);
     }
 
@@ -98,7 +98,7 @@ public class Player extends Entity {
         PlayState.map.y = 0;
         cam.getBounds().getPos().y = 0;
 
-        setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);
+        setAnimation(DOWN, sprite.getSpriteArray(DOWN), 10);
 
     }
 

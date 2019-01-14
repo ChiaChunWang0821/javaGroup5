@@ -31,7 +31,7 @@ public class PlayState extends GameState {
 	String musicclick = "res/background/click.wav";
 	public static Vector2f map;
 	protected static boolean musicStop;
-	Clip clip;
+	static Clip clip;
 
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
@@ -56,7 +56,7 @@ public class PlayState extends GameState {
 
 		tm = new TileManager("tile/test.xml", cam);
 
-        player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2)+500, 0 + (GamePanel.height / 2) + 1300), 128);
+		player = new Player(cam, new Sprite("entity//超商老闆.png",48,48), new Vector2f(0 + (GamePanel.width / 2)+500, 0 + (GamePanel.height / 2) + 1300), 128);
 
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(190,190)/*框框起始位置 世界座標*/,256 ,1, player, 0));
 		farm.add(new Farm(cam , new Sprite("entity//heart.png",128,128),new Vector2f(380,190)/*框框起始位置 世界座標*/,256 ,2, player, 0));
@@ -79,16 +79,16 @@ public class PlayState extends GameState {
 		seas.add(new Sea(cam, new Sprite("entity//heart.png", 128, 128), new Vector2f(3008, 3164), 316, 9, player, 0));
 
 		animals.add(new Animals("Cow", new String("milk"), cam, new Sprite("entity/cow_walk.png",128, 128), new Vector2f(0+(GamePanel.width / 2)+200 , (GamePanel.height / 2)+200), 256, 1, player));
-        animals.add(new Animals("Llama", new String("wool"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 256, 1, player));
-        animals.add(new Animals("Pig", new String("meat"), cam, new Sprite("entity/pig_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) ), 256, 1, player));
-		
+		animals.add(new Animals("Llama", new String("wool"), cam, new Sprite("entity/llama_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) + 200), 256, 1, player));
+		animals.add(new Animals("Pig", new String("meat"), cam, new Sprite("entity/pig_walk.png", 128, 128), new Vector2f(0 + (GamePanel.width / 2) + 400, (GamePanel.height / 2) ), 256, 1, player));
+
 		pets.add(new Pet("Dog", cam, new Sprite("entity/p.png", 96, 96), new Vector2f(0 + (GamePanel.width / 2)+500, 0 + (GamePanel.height / 2) + 1300) , 96, 1, player));
-		
-		human.add(new Human(cam, new Sprite("entity/男1_2.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 1300), 128, "Gray",player));
-		human.add(new Human(cam, new Sprite("entity/男2_4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1500, (GamePanel.height / 2) + 1500), 128, "Tashi",player));
-		human.add(new Human(cam, new Sprite("entity/男3.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 900, (GamePanel.height / 2) + 900), 128, "Abner",player));
-		human.add(new Human(cam, new Sprite("entity/男4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1500, (GamePanel.height / 2) + 1000), 128, "Bill",player));
-		human.add(new Human(cam, new Sprite("entity/男5.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 1300, (GamePanel.height / 2) + 900), 128, "Colin",player));
+
+		human.add(new Human(cam, new Sprite("entity/男1_2.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 2000, (GamePanel.height / 2) + 900), 128, "Gray",player));
+		human.add(new Human(cam, new Sprite("entity/男2_4.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 2000, (GamePanel.height / 2) + 2000), 128, "Tashi",player));
+		human.add(new Human(cam, new Sprite("entity/男3.png", 48, 48), new Vector2f(500, (GamePanel.height / 2) + 900), 128, "Abner",player));
+		human.add(new Human(cam, new Sprite("entity/男4.png", 48, 48), new Vector2f(500, (GamePanel.height / 2) + 1900), 128, "Bill",player));
+		human.add(new Human(cam, new Sprite("entity/男5.png", 48, 48), new Vector2f(0 + (GamePanel.width / 2) + 2000, (GamePanel.height / 2) ), 128, "Colin",player));
 
 		cam.target(player);
 	}
@@ -103,14 +103,14 @@ public class PlayState extends GameState {
 			pets.get(0).update(player);
 			cam.update();
 		}
-		
+
 		for(int i=0;i<5;i++){
 			if(human.get(i).getMarry()){
 				gsm.add(GameStateManager.MARRY);
 				break;
 			}
 		}
-		
+
 		if (musicStop){
 			clip.stop();
 		}
@@ -154,18 +154,18 @@ public class PlayState extends GameState {
 			player.click(x,y);
 		}
 		try {
-            Clip clickclip;
-            File file = new File(musicclick);
-            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-            AudioFormat format = ais.getFormat();
-            DataLine.Info info = new DataLine.Info(Clip.class, format);
-            clickclip = (Clip)AudioSystem.getLine(info);
-            clickclip.open(ais);
-            clickclip.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
+			Clip clickclip;
+			File file = new File(musicclick);
+			AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+			AudioFormat format = ais.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			clickclip = (Clip)AudioSystem.getLine(info);
+			clickclip.open(ais);
+			clickclip.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+		}
 	}
 
 	public void render(Graphics2D g) {
@@ -192,7 +192,7 @@ public class PlayState extends GameState {
 		cam.render(g);
 		player.render(g);
 	}
-	
+
 	public ArrayList<Human> getHuman() {
 		return human;
 	}
@@ -220,7 +220,7 @@ public class PlayState extends GameState {
 			}catch (Exception e){
 			}
 		}
-		
+
 		int tmpCount = Integer.parseInt(record.get(8));
 		Inventory tmpInv = new Inventory();
 		for(int i=0;i<tmpCount*2;i+=2){

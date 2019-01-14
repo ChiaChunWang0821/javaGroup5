@@ -82,10 +82,16 @@ public class Sprite {
 
     public void loadSpriteArray() {
         spriteArray = new BufferedImage[hSprite][wSprite];
-
+        BufferedImage temp;
         for (int y = 0; y < hSprite; y++) {
             for (int x = 0; x < wSprite; x++) {
                 spriteArray[y][x] = getSprite(x, y);
+                if(x == 1){
+                    temp = spriteArray[y][0];
+                    spriteArray[y][0] = spriteArray[y][x];
+                    spriteArray[y][x] = temp;
+                }
+
             }
         }
     }

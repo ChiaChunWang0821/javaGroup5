@@ -10,7 +10,7 @@ public class Animals extends Entity {
 
     private AABB sense;
     private int r;
-    
+
     private boolean draw = false;
     private AnimalsInformation animalsBehavior = new AnimalsInformation(sprite.getSpriteArray(DOWN));
 
@@ -22,7 +22,7 @@ public class Animals extends Entity {
 
     public Animals(String name, String item, Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount, Player player) {
         super(sprite, orgin, size);
-        
+
         this.name = name;
         this.item = item;
         this.cam = cam;
@@ -40,7 +40,7 @@ public class Animals extends Entity {
 
         sense = new AABB(new Vector2f(orgin.x + size / 2 - r / 2, orgin.y + size / 2 - r / 2), r);
     }
-    
+
     public Animals(String name,  Camera cam, Sprite sprite, Vector2f orgin, int size, int feedCount, Player player) {
         super(sprite, orgin, size);
 
@@ -87,17 +87,17 @@ public class Animals extends Entity {
     @Override
     public void render(Graphics2D g) {
         if(cam.getBounds().collides(this.bounds)) {
-        	g.setColor(Color.blue);
-        	
+            g.setColor(Color.blue);
+
             g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
         }
-        
+
         if(draw == true) {
-        	animalsBehavior.render(g, name, feedCount);
+            animalsBehavior.render(g, name, feedCount);
         }
         if(feedCount > 5) {
             player.setInventory(item);
-        	feedCount = 0;
+            feedCount = 0;
         }
     }
 
@@ -113,18 +113,18 @@ public class Animals extends Entity {
 
     public void  click(int x, int y){
         if(clickInside(x,y)){
-        	if(draw == true){
-        		draw = false;
-        		this.feedCount++;
-        		setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
-        	}
+            if(draw == true){
+                draw = false;
+                this.feedCount++;
+                setAnimation(RIGHT,sprite.getSpriteArray(RIGHT),1000);
+            }
             else{
-            	draw = true;
-            	setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
+                draw = true;
+                setAnimation(DOWN,sprite.getSpriteArray(DOWN),1000);
             }
         }
     }
-    
+
     public int getFeedCount() {
         return feedCount;
     }

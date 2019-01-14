@@ -66,7 +66,7 @@ public abstract class Entity {
         hitBounds.setXOffset(size_w/ 2);
 
         ani = new Animation();
-        setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 10);
+        setAnimation(2, sprite.getSpriteArray(DOWN), 10);
 
         tc = new TileCollision(this);
     }

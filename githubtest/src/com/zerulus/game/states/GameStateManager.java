@@ -46,7 +46,6 @@ public class GameStateManager {
         shopMenu = new Sprite("ui/board.jpg", 64, 64);
         talk = new Sprite("ui/talk1.png",64,64);
         states[FIRST] = new Firststate(this);
-
     }
 
     public boolean getState(int state) {
